@@ -15,7 +15,10 @@ export const registerSchema = z.object({
  * the right error either way, not a validation error.
  */
 export const loginSchema = z.object({
-  email: z.string().min(1, 'Email is required'),
+  email: z
+    .string()
+    .min(1, 'Email is required')
+    .transform((email) => email.toLowerCase()),
   password: z.string().min(1, 'Password is required'),
 });
 

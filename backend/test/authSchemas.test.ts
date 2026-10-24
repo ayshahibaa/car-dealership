@@ -46,4 +46,11 @@ describe('loginSchema', () => {
 
     expect(result.success).toBe(false);
   });
+
+  it('lowercases the email the same way registerSchema does, so case never breaks login', () => {
+    const result = loginSchema.safeParse({ email: 'Jerry@Example.com', password: 'x' });
+
+    expect(result.success).toBe(true);
+    if (result.success) expect(result.data.email).toBe('jerry@example.com');
+  });
 });
