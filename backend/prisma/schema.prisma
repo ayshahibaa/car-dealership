@@ -1,0 +1,94 @@
+// Autoza backend — Prisma schema
+// Vehicle mirrors the existing frontend dataset (src/data/cars.json) field for
+// field, so the seed script is a straight migration rather than a remodel.
+// The one new field is `quantity`: each row is still a unique real used car
+// (not a generic stock-keeping unit), so quantity starts at 1, a purchase
+// sets it to 0 (sold), and an admin restock sets it back to 1.
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id           String    @id @default(uuid())
+  email        String    @unique
+  passwordHash String
+  role         Role      @default(USER)
+  createdAt    DateTime  @default(now())
+  vehicles     Vehicle[] @relation("ListedBy")
+}
+
+model Vehicle {
+  id    String @id @default(uuid())
+  // Human-friendly reference, e.g. "CAR-0001". Unique so re-running the seed
+  // script is safe (upsert by stockNumber) instead of duplicating rows.
+  stockNumber String @unique
+
+  title   String
+  make    String
+  model   String
+  variant String?
+  year    Int
+
+  price    Int
+  quantity Int @default(1)
+  mileage  Int
+
+  fuelType           String?
+  transmission       String?
+  transmissionDetail String?
+  gears              Int?
+  drivetrain         String?
+  bodyType           String
+
+  engine          String?
+  engineCapacityL Float?
+  horsepower      Int?
+
+  exteriorColor       String?
+  exteriorColorFamily String?
+  interiorColor       String?
+  doors               Int?
+  seats               Int?
+
+  condition       String
+  accidentHistory String?
+  // { min, max, unit } — small and only ever read as a whole, so JSON here
+  // avoids a one-row-per-vehicle side table for no real benefit.
+  fuelEconomy     Json?
+
+  vin         String?
+  sellerId    String?
+  description String?
+
+  // Array of { src, alt, kind, credit } — same reasoning as fuelEconomy.
+  images Json
+
+  listingStatus String    @default("available")
+  listedAt      DateTime?
+  dataFlags     String[]  @default([])
+  sourceRow     Int?
+
+  // Set only when a logged-in user lists their own car through the app
+  // (the "sell your car" flow); null for the originally-seeded dataset.
+  listedById String?
+  listedBy   User?   @relation("ListedBy", fields: [listedById], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([make])
+  @@index([bodyType])
+  @@index([price])
+  @@index([listingStatus])
+}
