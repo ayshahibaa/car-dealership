@@ -1,0 +1,38 @@
+/** Shape of one record in the frontend's src/data/cars.json — the migration source. */
+export interface LegacyCar {
+  id: string;
+  stockNumber: string;
+  title: string;
+  make: string;
+  model: string;
+  variant: string | null;
+  year: number;
+  price: number;
+  mileage: number;
+  fuelType: string | null;
+  transmission: string | null;
+  transmissionDetail: string | null;
+  gears: number | null;
+  drivetrain: string | null;
+  bodyType: string;
+  engine: string | null;
+  engineCapacityL: number | null;
+  horsepower: number | null;
+  exteriorColor: string | null;
+  exteriorColorFamily: string | null;
+  interiorColor: string | null;
+  doors: number | null;
+  seats: number | null;
+  condition: string;
+  accidentHistory: string | null;
+  fuelEconomy: { min: number; max: number; unit: string } | null;
+  vin: string | null;
+  sellerId: string | null;
+  description: string | null;
+  descriptionSource: string | null;
+  images: Array<{ src: string; alt: string; kind: string; credit: string | null }>;
+  listingStatus: string;
+  listedAt: string | null;
+  dataFlags: string[];
+  sourceRow: number | null;
+}
