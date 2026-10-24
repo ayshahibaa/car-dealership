@@ -49,3 +49,39 @@ export async function deleteVehicle(repo: VehicleRepository, id: string): Promis
     throw new ApiError(404, 'Vehicle not found');
   }
 }
+
+/**
+ * Any logged-in user may purchase an available vehicle (enforced by
+ * requireAuth at the router layer). Decrements quantity by 1; once it hits
+ * 0 the listing is marked sold. Rejects with 409 if there's no stock left.
+ */
+export async function purchaseVehicle(repo: VehicleRepository, id: string): Promise<Vehicle> {
+  const vehicle = await repo.findById(id);
+  if (!vehicle) {
+    throw new ApiError(404, 'Vehicle not found');
+  }
+  if (vehicle.quantity <= 0) {
+    throw new ApiError(409, 'Vehicle is out of stock');
+  }
+
+  const quantity = vehicle.quantity - 1;
+  const updated = await repo.update(id, {
+    quantity,
+    listingStatus: quantity === 0 ? 'sold' : vehicle.listingStatus,
+  });
+  // repo.update can only return null if the row vanished between the two
+  // calls above — vanishingly unlikely, but still not a case to paper over.
+  if (!updated) {
+    throw new ApiError(404, 'Vehicle not found');
+  }
+  return updated;
+}
+
+/** Admin-only (enforced by requireAuth + requireAdmin at the router layer). Resets quantity to 1 and re-lists the vehicle. */
+export async function restockVehicle(repo: VehicleRepository, id: string): Promise<Vehicle> {
+  const updated = await repo.update(id, { quantity: 1, listingStatus: 'available' });
+  if (!updated) {
+    throw new ApiError(404, 'Vehicle not found');
+  }
+  return updated;
+}

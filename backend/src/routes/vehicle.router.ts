@@ -6,6 +6,8 @@ import {
   deleteVehicle,
   getVehicle,
   listVehicles,
+  purchaseVehicle,
+  restockVehicle,
   updateVehicle,
 } from '../vehicles/vehicleService.js';
 import type { VehicleFilter, VehicleRepository } from '../vehicles/vehicleRepository.js';
@@ -86,6 +88,24 @@ export function createVehicleRouter(repo: VehicleRepository): Router {
     try {
       await deleteVehicle(repo, req.params.id as string);
       res.status(204).send();
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  router.post('/:id/purchase', requireAuth, async (req, res, next) => {
+    try {
+      const vehicle = await purchaseVehicle(repo, req.params.id as string);
+      res.status(200).json(vehicle);
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  router.post('/:id/restock', requireAuth, requireAdmin, async (req, res, next) => {
+    try {
+      const vehicle = await restockVehicle(repo, req.params.id as string);
+      res.status(200).json(vehicle);
     } catch (error) {
       next(error);
     }
