@@ -6,8 +6,14 @@
 // sets it to 0 (sold), and an admin restock sets it back to 1.
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  // Neon (and other pooled providers): migrations run over this *unpooled*
+  // connection instead, since schema changes need a direct connection.
+  // DATABASE_URL stays the pooled one the running app actually queries
+  // through. Safe to leave DIRECT_URL unset/equal to DATABASE_URL for a
+  // plain, unpooled Postgres (e.g. this sandbox's local dev database).
+  directUrl = env("DIRECT_URL")
 }
 
 generator client {
@@ -19,6 +25,12 @@ enum Role {
   ADMIN
 }
 
+enum PurchaseRequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
 model User {
   id           String    @id @default(uuid())
   email        String    @unique
@@ -26,6 +38,9 @@ model User {
   role         Role      @default(USER)
   createdAt    DateTime  @default(now())
   vehicles     Vehicle[] @relation("ListedBy")
+
+  purchaseRequests         PurchaseRequest[] @relation("Buyer")
+  decidedPurchaseRequests  PurchaseRequest[] @relation("DecidedBy")
 }
 
 model Vehicle {
@@ -67,6 +82,14 @@ model Vehicle {
   // avoids a one-row-per-vehicle side table for no real benefit.
   fuelEconomy     Json?
 
+  // "pending" | "approved" | "rejected". Defaults to "approved" so this
+  // column backfills the pre-existing seeded inventory as already-approved
+  // when the migration first adds it; the repository layer overrides this
+  // default to "pending" for every vehicle created through the public
+  // "sell your car" flow (see prismaVehicleRepository.ts's create()) —
+  // a new listing only appears in public listings once an admin approves it.
+  approvalStatus String @default("approved")
+
   vin         String?
   sellerId    String?
   description String?
@@ -84,6 +107,8 @@ model Vehicle {
   listedById String?
   listedBy   User?   @relation("ListedBy", fields: [listedById], references: [id])
 
+  purchaseRequests PurchaseRequest[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -91,4 +116,31 @@ model Vehicle {
   @@index([bodyType])
   @@index([price])
   @@index([listingStatus])
+  @@index([approvalStatus])
+}
+
+/**
+ * A buyer's request to purchase a specific vehicle. Buying no longer
+ * decrements stock on its own — it only records intent. An admin reviewing
+ * the queue (GET /api/purchase-requests/pending) decides: approving one
+ * decrements the vehicle's quantity (same rule the old instant-purchase
+ * flow used), rejecting leaves the vehicle untouched. This is what lets a
+ * buyer "send a request to the admin" instead of buying outright.
+ */
+model PurchaseRequest {
+  id      String                @id @default(uuid())
+  vehicle Vehicle               @relation(fields: [vehicleId], references: [id])
+  vehicleId String
+  buyer   User                  @relation("Buyer", fields: [buyerId], references: [id])
+  buyerId String
+  status  PurchaseRequestStatus @default(PENDING)
+
+  requestedAt DateTime  @default(now())
+  decidedAt   DateTime?
+  decidedBy   User?     @relation("DecidedBy", fields: [decidedById], references: [id])
+  decidedById String?
+
+  @@index([vehicleId])
+  @@index([buyerId])
+  @@index([status])
 }

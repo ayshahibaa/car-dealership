@@ -1,12 +1,14 @@
 import { describe, expect, it } from 'vitest';
-import { purchaseVehicle, restockVehicle } from '../src/vehicles/vehicleService.js';
+import { decrementVehicleStock, restockVehicle } from '../src/vehicles/vehicleService.js';
 import type { Vehicle, VehicleRepository } from '../src/vehicles/vehicleRepository.js';
 
 /**
- * Purchase/restock business rules, same DI-against-a-fake-repository pattern
- * as the rest of vehicleService.ts. Who's allowed to call these (any logged-
- * in user for purchase, admin-only for restock) is enforced at the router
- * layer, not here.
+ * Stock-mutation business rules, same DI-against-a-fake-repository pattern
+ * as the rest of vehicleService.ts. decrementVehicleStock isn't reachable
+ * directly from the router any more — it's what approving a PurchaseRequest
+ * does under the hood (see purchaseRequests/purchaseRequestService.test.ts)
+ * — but the rule itself ("decrement by 1, mark sold at 0, reject at 0") is
+ * still exactly as testable here as it was when it was called "purchase".
  */
 function makeVehicle(overrides: Partial<Vehicle> = {}): Vehicle {
   return {
@@ -38,6 +40,12 @@ function createFakeRepo(seed: Vehicle[] = []): VehicleRepository {
       if (filter?.make) results = results.filter((v) => v.make === filter.make);
       return results;
     },
+    async findAll() {
+      return vehicles;
+    },
+    async findPending() {
+      return vehicles.filter((v) => v.approvalStatus === 'pending');
+    },
     async findById(id) {
       return vehicles.find((v) => v.id === id) ?? null;
     },
@@ -68,11 +76,11 @@ function createFakeRepo(seed: Vehicle[] = []): VehicleRepository {
   };
 }
 
-describe('purchaseVehicle', () => {
+describe('decrementVehicleStock', () => {
   it('decrements quantity by 1 and marks the vehicle sold when it reaches 0', async () => {
     const repo = createFakeRepo([makeVehicle({ id: 'a', quantity: 1 })]);
 
-    const result = await purchaseVehicle(repo, 'a');
+    const result = await decrementVehicleStock(repo, 'a');
 
     expect(result.quantity).toBe(0);
     expect(result.listingStatus).toBe('sold');
@@ -81,22 +89,22 @@ describe('purchaseVehicle', () => {
   it('decrements quantity without marking sold when stock remains', async () => {
     const repo = createFakeRepo([makeVehicle({ id: 'a', quantity: 3 })]);
 
-    const result = await purchaseVehicle(repo, 'a');
+    const result = await decrementVehicleStock(repo, 'a');
 
     expect(result.quantity).toBe(2);
     expect(result.listingStatus).toBe('available');
   });
 
-  it('rejects purchasing a vehicle that is already out of stock', async () => {
+  it('rejects decrementing a vehicle that is already out of stock', async () => {
     const repo = createFakeRepo([makeVehicle({ id: 'a', quantity: 0 })]);
 
-    await expect(purchaseVehicle(repo, 'a')).rejects.toMatchObject({ status: 409 });
+    await expect(decrementVehicleStock(repo, 'a')).rejects.toMatchObject({ status: 409 });
   });
 
   it('throws a 404-style error when the vehicle does not exist', async () => {
     const repo = createFakeRepo();
 
-    await expect(purchaseVehicle(repo, 'missing')).rejects.toMatchObject({ status: 404 });
+    await expect(decrementVehicleStock(repo, 'missing')).rejects.toMatchObject({ status: 404 });
   });
 });
 

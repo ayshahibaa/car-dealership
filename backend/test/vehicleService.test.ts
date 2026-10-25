@@ -59,6 +59,12 @@ function createFakeRepo(seed: Vehicle[] = []): VehicleRepository {
       }
       return results;
     },
+    async findAll() {
+      return vehicles;
+    },
+    async findPending() {
+      return vehicles.filter((v) => v.approvalStatus === 'pending');
+    },
     async findById(id) {
       return vehicles.find((v) => v.id === id) ?? null;
     },

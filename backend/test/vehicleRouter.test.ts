@@ -41,6 +41,12 @@ function buildApp(seed: Vehicle[] = []) {
       if (filter?.make) results = results.filter((v) => v.make === filter.make);
       return results;
     },
+    async findAll() {
+      return vehicles;
+    },
+    async findPending() {
+      return vehicles.filter((v) => v.approvalStatus === 'pending');
+    },
     async findById(id) {
       return vehicles.find((v) => v.id === id) ?? null;
     },

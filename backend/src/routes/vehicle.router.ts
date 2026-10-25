@@ -2,11 +2,14 @@ import { Router } from 'express';
 import { requireAdmin, requireAuth } from '../middleware/auth.js';
 import { ApiError } from '../middleware/errorHandler.js';
 import {
+  approveVehicleListing,
   createVehicle,
   deleteVehicle,
   getVehicle,
+  listAllVehicles,
+  listPendingVehicles,
   listVehicles,
-  purchaseVehicle,
+  rejectVehicleListing,
   restockVehicle,
   updateVehicle,
 } from '../vehicles/vehicleService.js';
@@ -28,11 +31,32 @@ function parseFilter(query: Record<string, unknown>): VehicleFilter {
  * repository (status codes, auth rules) with no database — same pattern as
  * auth.router.ts. The real app wires it up with prismaVehicleRepository.
  *
- * Permissions: listing/search are public; create and update are open to any
- * logged-in user; delete is admin-only.
+ * Permissions: listing/search are public (approved + in-stock only — see
+ * prismaVehicleRepository.ts's buildWhere); create and update are open to
+ * any logged-in user; delete, approve/reject and restock are admin-only.
+ * A new listing always starts "pending" (prismaVehicleRepository.ts forces
+ * this server-side) and only appears in public listings once approved.
  */
 export function createVehicleRouter(repo: VehicleRepository): Router {
   const router = Router();
+
+  router.get('/admin/all', requireAuth, requireAdmin, async (_req, res, next) => {
+    try {
+      const vehicles = await listAllVehicles(repo);
+      res.status(200).json(vehicles);
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  router.get('/admin/pending', requireAuth, requireAdmin, async (_req, res, next) => {
+    try {
+      const vehicles = await listPendingVehicles(repo);
+      res.status(200).json(vehicles);
+    } catch (error) {
+      next(error);
+    }
+  });
 
   router.get('/search', async (req, res, next) => {
     try {
@@ -77,7 +101,12 @@ export function createVehicleRouter(repo: VehicleRepository): Router {
 
   router.put('/:id', requireAuth, async (req, res, next) => {
     try {
-      const vehicle = await updateVehicle(repo, req.params.id as string, req.body);
+      // approvalStatus/quantity/listingStatus drive moderation and stock —
+      // stripped here so this general-purpose edit endpoint can't be used to
+      // self-approve a listing or fake a stock level; approve/reject/restock
+      // (all admin-only) are the only routes allowed to change them.
+      const { approvalStatus: _approvalStatus, quantity: _quantity, listingStatus: _listingStatus, ...editable } = req.body ?? {};
+      const vehicle = await updateVehicle(repo, req.params.id as string, editable);
       res.status(200).json(vehicle);
     } catch (error) {
       next(error);
@@ -93,9 +122,18 @@ export function createVehicleRouter(repo: VehicleRepository): Router {
     }
   });
 
-  router.post('/:id/purchase', requireAuth, async (req, res, next) => {
+  router.post('/:id/approve', requireAuth, requireAdmin, async (req, res, next) => {
     try {
-      const vehicle = await purchaseVehicle(repo, req.params.id as string);
+      const vehicle = await approveVehicleListing(repo, req.params.id as string);
+      res.status(200).json(vehicle);
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  router.post('/:id/reject', requireAuth, requireAdmin, async (req, res, next) => {
+    try {
+      const vehicle = await rejectVehicleListing(repo, req.params.id as string);
       res.status(200).json(vehicle);
     } catch (error) {
       next(error);

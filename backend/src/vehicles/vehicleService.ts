@@ -19,6 +19,16 @@ export function listVehicles(repo: VehicleRepository, filter?: VehicleFilter): P
   return repo.findAvailable(filter);
 }
 
+/** Admin-only (enforced at the router layer): every vehicle, including out-of-stock ones, so they can be restocked. */
+export function listAllVehicles(repo: VehicleRepository): Promise<Vehicle[]> {
+  return repo.findAll();
+}
+
+/** Admin-only (enforced at the router layer): listings awaiting moderation. */
+export function listPendingVehicles(repo: VehicleRepository): Promise<Vehicle[]> {
+  return repo.findPending();
+}
+
 export function getVehicle(repo: VehicleRepository, id: string): Promise<Vehicle | null> {
   return repo.findById(id);
 }
@@ -51,11 +61,15 @@ export async function deleteVehicle(repo: VehicleRepository, id: string): Promis
 }
 
 /**
- * Any logged-in user may purchase an available vehicle (enforced by
- * requireAuth at the router layer). Decrements quantity by 1; once it hits
- * 0 the listing is marked sold. Rejects with 409 if there's no stock left.
+ * Decrements quantity by 1; once it hits 0 the listing is marked sold.
+ * Rejects with 409 if there's no stock left. This no longer runs off a
+ * direct buyer action — it's the effect of an admin approving a
+ * PurchaseRequest (see purchaseRequests/purchaseRequestService.ts), which
+ * is the only caller. Buying a car used to call this directly and complete
+ * instantly; it's now a two-step request/approval flow so a sale can't
+ * happen without an admin signing off on it.
  */
-export async function purchaseVehicle(repo: VehicleRepository, id: string): Promise<Vehicle> {
+export async function decrementVehicleStock(repo: VehicleRepository, id: string): Promise<Vehicle> {
   const vehicle = await repo.findById(id);
   if (!vehicle) {
     throw new ApiError(404, 'Vehicle not found');
@@ -80,6 +94,24 @@ export async function purchaseVehicle(repo: VehicleRepository, id: string): Prom
 /** Admin-only (enforced by requireAuth + requireAdmin at the router layer). Resets quantity to 1 and re-lists the vehicle. */
 export async function restockVehicle(repo: VehicleRepository, id: string): Promise<Vehicle> {
   const updated = await repo.update(id, { quantity: 1, listingStatus: 'available' });
+  if (!updated) {
+    throw new ApiError(404, 'Vehicle not found');
+  }
+  return updated;
+}
+
+/** Admin-only: approves a pending listing so it starts showing up in public listings. */
+export async function approveVehicleListing(repo: VehicleRepository, id: string): Promise<Vehicle> {
+  const updated = await repo.update(id, { approvalStatus: 'approved' });
+  if (!updated) {
+    throw new ApiError(404, 'Vehicle not found');
+  }
+  return updated;
+}
+
+/** Admin-only: rejects a pending listing. It stays in the database but never becomes publicly visible. */
+export async function rejectVehicleListing(repo: VehicleRepository, id: string): Promise<Vehicle> {
+  const updated = await repo.update(id, { approvalStatus: 'rejected' });
   if (!updated) {
     throw new ApiError(404, 'Vehicle not found');
   }
