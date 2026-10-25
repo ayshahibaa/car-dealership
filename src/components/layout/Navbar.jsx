@@ -16,7 +16,6 @@ const linkClass = ({ isActive }) =>
   [
     'relative px-1 py-2 text-sm font-medium transition-colors',
     isActive ? 'text-white' : 'text-ink-300 hover:text-white',
-    // red underline on the active link, like the reference design
     isActive ? 'after:absolute after:inset-x-0 after:-bottom-[17px] after:h-0.5 after:bg-brand-500' : '',
   ].join(' ');
 
@@ -27,7 +26,6 @@ export default function Navbar() {
   const { isAuthenticated, isAdmin, user, logout } = useAuth();
   const { count: cartCount } = useCart();
 
-  // Close the mobile menu whenever the page changes
   useEffect(() => setMenuOpen(false), [location.pathname]);
 
   const links = [
@@ -46,10 +44,9 @@ export default function Navbar() {
     <header className="sticky top-0 z-40 border-b border-white/10 bg-ink-950/90 backdrop-blur">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8" aria-label="Main">
         <Link to="/" className="shrink-0" aria-label="Autoza home">
-          <Logo className="h-6 w-auto sm:h-7" />
+          <Logo tone="dark" className="h-6 w-auto sm:h-7" />
         </Link>
 
-        {/* Desktop links */}
         <ul className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
             <li key={l.to}>
@@ -60,7 +57,6 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Desktop account controls */}
         <div className="hidden items-center gap-3 md:flex">
           {isAuthenticated ? (
             <>
@@ -75,7 +71,6 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* Mobile menu button */}
         <button
           type="button"
           className="inline-flex items-center justify-center rounded-md p-2 text-ink-200 hover:bg-white/10 md:hidden"
@@ -90,7 +85,6 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile menu panel */}
       {menuOpen && (
         <div id="mobile-menu" className="border-t border-white/10 bg-ink-950 md:hidden">
           <ul className="space-y-1 px-4 py-3">

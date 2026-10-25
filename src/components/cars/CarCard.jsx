@@ -11,17 +11,6 @@ import { useCompare } from '../../context/CompareContext.jsx';
 import { useFavorites } from '../../context/FavoritesContext.jsx';
 import { useCart } from '../../context/CartContext.jsx';
 
-/**
- * The listing card used on the homepage, inventory grid and "similar cars".
- *
- * Favouriting and the cart both read straight from their own contexts
- * (localStorage-backed — see FavoritesContext.jsx / CartContext.jsx), the
- * same way the compare toggle already reads from CompareContext: every
- * CarCard shares one site-wide selection, so a page never has to wire up
- * its own favourite/cart state (that was the bug — InventoryPage tracked
- * favourites itself, in memory, and the homepage didn't track them at all,
- * so the heart only ever showed up on one page and never survived a refresh).
- */
 export default function CarCard({ car, className = '' }) {
   const { isSelected, toggle, isFull } = useCompare();
   const { isFavorite, toggle: toggleFavorite } = useFavorites();
@@ -97,7 +86,7 @@ export default function CarCard({ car, className = '' }) {
         </ul>
 
         {car.accidentHistory === 'none-reported' && (
-          <p className="mt-2 flex items-center gap-1.5 text-xs font-medium text-green-400">
+          <p className="mt-2 flex items-center gap-1.5 text-xs font-medium text-green-700">
             <IconCheck className="h-3.5 w-3.5" /> No accidents reported
           </p>
         )}

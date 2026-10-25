@@ -3,15 +3,6 @@ import { formatMileage } from '../../utils/formatMileage.js';
 
 const show = (v) => (v === null || v === undefined || v === '' ? '—' : v);
 
-/**
- * Each row: `get` reads the raw value, `format` renders it. `rank` says how
- * to pick a "better" value when at least two cars have a comparable value:
- *   'lower'  / 'higher'   numeric comparison (price, year, mileage, horsepower)
- *   'flag'                a two-state field where `goodValue` is the better state
- *   (omitted)             not rankable (color, body type) — shown with no highlight
- * Nothing here is invented: a row with fewer than two comparable values just
- * shows plain text, same as any other missing-data case in the app.
- */
 const GROUPS = [
   {
     title: 'Overview',
@@ -67,11 +58,8 @@ function winningIndexes(row, cars) {
   return values.map((v) => typeof v === 'number' && v === best);
 }
 
-/** Grouped spec rows for 2-3 cars, with the better value highlighted where there's an objective winner. */
 export default function CompareTable({ cars }) {
   const gridStyle = { gridTemplateColumns: `minmax(88px, 140px) repeat(${cars.length}, minmax(100px, 1fr))` };
-  // Only force a horizontal scroll once a row genuinely can't fit (3-up comparisons on narrow
-  // screens); 2-up comparisons shrink to fit instead, since that's the common case.
   const minWidth = cars.length >= 3 ? 'min-w-[460px]' : 'min-w-0';
 
   return (
@@ -87,7 +75,7 @@ export default function CompareTable({ cars }) {
                   <div key={row.label} className="grid items-center gap-3 px-4 py-3" style={gridStyle}>
                     <p className="text-sm font-medium text-ink-400">{row.label}</p>
                     {cars.map((car, i) => (
-                      <p key={car.id} className={`text-sm ${wins[i] ? 'font-semibold text-green-400' : 'text-white'}`}>
+                      <p key={car.id} className={`text-sm ${wins[i] ? 'font-semibold text-green-700' : 'text-white'}`}>
                         {row.format(car)}
                         {wins[i] && <span className="ml-1.5 align-middle text-xs">✓ Best</span>}
                       </p>

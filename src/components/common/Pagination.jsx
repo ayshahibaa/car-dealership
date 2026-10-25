@@ -1,6 +1,5 @@
 import { IconChevronRight } from '../icons/index.jsx';
 
-/** Builds a windowed list of page numbers with `'…'` gaps, e.g. [1, '…', 4, 5, 6, '…', 58]. */
 function pageWindow(current, total) {
   const pages = new Set([1, total, current, current - 1, current + 1]);
   const sorted = [...pages].filter((p) => p >= 1 && p <= total).sort((a, b) => a - b);
@@ -16,7 +15,6 @@ function pageWindow(current, total) {
 
 const navBtn = 'inline-flex h-9 min-w-9 items-center justify-center rounded-md px-2 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-40';
 
-/** Page number navigation for the inventory grid. `onChange(page)` is called with a 1-based page number. */
 export default function Pagination({ page, totalPages, onChange }) {
   if (totalPages <= 1) return null;
 
@@ -43,7 +41,7 @@ export default function Pagination({ page, totalPages, onChange }) {
             type="button"
             aria-current={p === page ? 'page' : undefined}
             onClick={() => onChange(p)}
-            className={`${navBtn} ${p === page ? 'bg-brand-500 text-white' : 'text-ink-300 hover:bg-white/10 hover:text-white'}`}
+            className={`${navBtn} ${p === page ? 'bg-brand-500 text-paper' : 'text-ink-300 hover:bg-white/10 hover:text-white'}`}
           >
             {p}
           </button>

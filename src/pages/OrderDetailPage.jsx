@@ -20,14 +20,6 @@ const STATUS_MESSAGE = {
   REJECTED: "This request wasn't approved. You're welcome to browse similar cars or send another request.",
 };
 
-/**
- * The receipt/confirmation view for a single purchase request — what a
- * buyer lands on from "My orders" (or straight from the car page once
- * they've requested it; see CarDetailsPage.jsx). There's no dedicated
- * single-request backend endpoint — this re-reads the buyer's own list
- * (GET /api/purchase-requests/mine) and picks out the one matching :id,
- * same "fetch the list, find the row" approach OrdersPage already uses.
- */
 export default function OrderDetailPage() {
   const { id } = useParams();
   const { token } = useAuth();
@@ -59,7 +51,7 @@ export default function OrderDetailPage() {
               <p className="mt-1 text-sm text-ink-400">Request #{request.id.slice(0, 8)}</p>
             </div>
             {request.status === 'APPROVED' ? (
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-success-500/15 text-green-400">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-success-500/15 text-green-700">
                 <IconCheck className="h-5 w-5" />
               </span>
             ) : (

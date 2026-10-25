@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="border-t border-white/10 bg-ink-950">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-3 lg:px-8">
         <div>
-          <Logo className="h-6 w-auto" />
+          <Logo tone="dark" className="h-6 w-auto" />
           <p className="mt-4 max-w-xs text-sm text-ink-400">{appConfig.brand.tagline}.</p>
         </div>
         <nav aria-label="Footer">

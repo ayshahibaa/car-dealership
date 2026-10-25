@@ -11,8 +11,6 @@ import { useCompare } from '../context/CompareContext.jsx';
 import { getCars, getCarsByIds } from '../services/carService.js';
 import { formatCurrency } from '../utils/formatCurrency.js';
 
-// Brand red first (keeps the primary color on the first car, like the rest of the
-// site), then two colors with enough contrast against the dark background and each other.
 const RADAR_COLORS = ['#e8414f', '#60a5fa', '#34d399'];
 
 function CompareHeaderCard({ car, onRemove }) {
@@ -23,7 +21,7 @@ function CompareHeaderCard({ car, onRemove }) {
         type="button"
         onClick={onRemove}
         aria-label={`Remove ${car.title} from comparison`}
-        className="absolute right-2.5 top-2.5 flex h-7 w-7 items-center justify-center rounded-full bg-black/50 text-white hover:bg-black/70"
+        className="absolute right-2.5 top-2.5 flex h-7 w-7 items-center justify-center rounded-full bg-black/50 text-paper hover:bg-black/70"
       >
         <IconClose className="h-3.5 w-3.5" />
       </button>
@@ -36,7 +34,6 @@ function CompareHeaderCard({ car, onRemove }) {
   );
 }
 
-/** A quick make/model/keyword search used to fill an open comparison slot. */
 function AddCarSlot({ onAdd, excludeIds }) {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
@@ -96,13 +93,6 @@ function AddCarSlot({ onAdd, excludeIds }) {
   );
 }
 
-/**
- * The comparison itself lives in CompareContext (shared with CarCard's
- * compare toggle and the floating CompareBar). This page just mirrors the
- * current ids into the URL so a comparison can be shared/bookmarked, and
- * hydrates from the URL once if someone opens a shared link cold (the
- * context, like Favourites today, is session-only — not saved to localStorage).
- */
 export default function ComparePage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { ids, max, add, remove, setIds } = useCompare();

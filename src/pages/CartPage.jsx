@@ -38,15 +38,6 @@ function CartRow({ car, onRemove }) {
   );
 }
 
-/**
- * Anyone can add cars to the cart (CartContext is localStorage-backed, no
- * login needed — see CartContext.jsx). Checking out is the one step that
- * requires signing in, same rule PurchaseButton already applies: not
- * logged in gets a "Log in to buy" link that comes straight back here
- * afterwards. "Checkout" itself doesn't complete a sale — it files a
- * purchase request per car for an admin to approve (see
- * carService.js's requestPurchase and the "My orders" page).
- */
 export default function CartPage() {
   const { ids, remove } = useCart();
   const { isAuthenticated, token } = useAuth();
@@ -56,7 +47,7 @@ export default function CartPage() {
   );
 
   const [checkingOut, setCheckingOut] = useState(false);
-  const [results, setResults] = useState(null); // { requested: string[], failed: {id, title, message}[] } | null
+  const [results, setResults] = useState(null);
 
   const requestable = (cars ?? []).filter((c) => (c.quantity ?? 1) > 0 && c.listingStatus !== 'sold');
   const total = requestable.reduce((sum, c) => sum + (c.price ?? 0), 0);
@@ -68,7 +59,7 @@ export default function CartPage() {
     const failed = [];
     for (const car of requestable) {
       try {
-        // eslint-disable-next-line no-await-in-loop -- each request must land before the next, same as a real checkout
+        // eslint-disable-next-line no-await-in-loop
         await requestPurchase(car.id, token);
         requested.push(car.id);
       } catch (err) {
@@ -84,10 +75,6 @@ export default function CartPage() {
     <PageContainer className="py-12">
       <h1 className="text-3xl font-bold">Your cart</h1>
 
-      {/* Lives outside the cart-list block below so it survives the cart
-          emptying out right after a successful checkout — otherwise the one
-          confirmation that a request actually went through would vanish
-          the instant the last item it was for got removed from the cart. */}
       {results && (
         <div className="mt-6 space-y-2">
           {results.requested.length > 0 && (
@@ -143,7 +130,7 @@ export default function CartPage() {
               <Link
                 to="/login"
                 state={{ from: '/cart' }}
-                className="mt-5 flex w-full items-center justify-center rounded-md bg-brand-500 px-4 py-2.5 text-sm font-semibold text-white hover:bg-brand-600"
+                className="mt-5 flex w-full items-center justify-center rounded-md bg-brand-500 px-4 py-2.5 text-sm font-semibold text-paper hover:bg-brand-600"
               >
                 Log in to buy
               </Link>

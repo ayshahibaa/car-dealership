@@ -12,9 +12,6 @@ import { getFeaturedCars, getRecentCars, getFilterOptions, getCommunityListings 
 import { formatCurrency } from '../utils/formatCurrency.js';
 import { appConfig } from '../config/appConfig.js';
 
-// Round price bands for the hero search. These are UI buckets only — not a
-// dataset fact — so the lack of a matching listing just yields a normal
-// "no cars found" result on the inventory page, same as any other filter.
 const PRICE_BANDS = [10000, 20000, 35000, 50000, 75000];
 
 const HOW_IT_WORKS = [
@@ -32,9 +29,6 @@ export default function HomePage() {
   const { data: options } = useAsync(() => getFilterOptions(), []);
   const { data: featured, loading: loadingFeatured, error: errorFeatured } = useAsync(() => getFeaturedCars(4), []);
   const { data: recent, loading: loadingRecent, error: errorRecent } = useAsync(() => getRecentCars(4), []);
-  // The only place real, admin-approved seller submissions show up — see
-  // carService.js's getCommunityListings for why the rest of the site still
-  // reads the fixed local dataset.
   const { data: community, loading: loadingCommunity, error: errorCommunity } = useAsync(() => getCommunityListings(4), []);
 
   const yearOptions = useMemo(() => {
@@ -58,7 +52,6 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Hero */}
       <Section tone="dark" className="pt-14 sm:pt-20">
         <p className="text-sm font-semibold uppercase tracking-widest text-brand-400">Used cars, made simple</p>
         <h1 className="mt-3 max-w-2xl font-display text-4xl font-extrabold text-white sm:text-5xl">
@@ -101,7 +94,7 @@ export default function HomePage() {
               <Link
                 key={value}
                 to={`/cars?bodyType=${encodeURIComponent(value)}`}
-                className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-medium text-ink-200 transition-colors hover:border-brand-500 hover:bg-brand-500/10 hover:text-white"
+                className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-medium text-ink-200 transition-colors hover:border-brand-500 hover:bg-brand-500/10 hover:text-brand-600"
               >
                 {value} <span className="text-ink-400">({count})</span>
               </Link>
@@ -110,7 +103,6 @@ export default function HomePage() {
         )}
       </Section>
 
-      {/* Featured */}
       <Section tone="darker">
         <CarRow
           title="Featured cars"
@@ -122,7 +114,6 @@ export default function HomePage() {
         />
       </Section>
 
-      {/* Recently added */}
       <Section tone="dark">
         <CarRow
           title="Recently added"
@@ -134,11 +125,6 @@ export default function HomePage() {
         />
       </Section>
 
-      {/* Community listings: real seller submissions, admin-approved — the
-          one place "sell your car" actually becomes visible (see
-          SellCarPage.jsx and carService.js's getCommunityListings). Hidden
-          entirely while there's nothing approved yet, rather than showing
-          an empty section on every fresh install of the demo. */}
       {!errorCommunity && (loadingCommunity || community?.length > 0) && (
         <Section tone="darker">
           <CarRow
@@ -150,13 +136,12 @@ export default function HomePage() {
         </Section>
       )}
 
-      {/* How it works */}
       <Section tone="light">
         <h2 className="font-display text-2xl font-bold text-ink-900 sm:text-3xl">How it works</h2>
         <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-3">
           {HOW_IT_WORKS.map((step, i) => (
             <div key={step.title}>
-              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-500 text-sm font-bold text-white">
+              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-500 text-sm font-bold text-paper">
                 {i + 1}
               </div>
               <h3 className="mt-4 font-display text-lg font-semibold text-ink-900">{step.title}</h3>

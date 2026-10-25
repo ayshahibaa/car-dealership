@@ -14,7 +14,6 @@ import { formatCurrency } from '../utils/formatCurrency.js';
 import { formatMileage } from '../utils/formatMileage.js';
 import { appConfig } from '../config/appConfig.js';
 
-// Placeholder — gallery, specifications, enquiry form and similar cars are Phase 7.
 export default function CarDetailsPage() {
   const { id } = useParams();
   const { token, isAuthenticated } = useAuth();
@@ -24,10 +23,6 @@ export default function CarDetailsPage() {
   const [requestSent, setRequestSent] = useState(false);
   const [requestVersion, setRequestVersion] = useState(0);
 
-  // Whether *this* buyer already has a request for *this* car, and its
-  // outcome — so "You purchased this car" (and "request already sent")
-  // survive a refresh instead of only showing right after the click that
-  // made them (see requestSent below, which still covers that one instant).
   const { data: myRequests } = useAsync(
     () => (isAuthenticated ? getMyPurchaseRequests(token) : Promise.resolve(null)),
     [isAuthenticated, token, requestVersion],
@@ -70,10 +65,10 @@ export default function CarDetailsPage() {
             <div className="mt-6 flex max-w-xs flex-col gap-2">
               {myRequestForCar?.status === 'APPROVED' ? (
                 <div className="rounded-md border border-success-600/50 bg-success-700/15 px-4 py-3">
-                  <p className="flex items-center gap-2 text-sm font-semibold text-green-300">
+                  <p className="flex items-center gap-2 text-sm font-semibold text-green-700">
                     <IconCheck className="h-4 w-4" /> You purchased this car
                   </p>
-                  <Link to={`/orders/${myRequestForCar.id}`} className="mt-1 inline-block text-xs text-green-300 underline">
+                  <Link to={`/orders/${myRequestForCar.id}`} className="mt-1 inline-block text-xs text-green-700 underline">
                     View your receipt
                   </Link>
                 </div>

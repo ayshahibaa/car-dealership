@@ -8,41 +8,53 @@
  * Change a colour here and the whole site follows.
  */
 @theme {
-  /* Brand red (calls to action, highlights) */
-  --color-brand-300: #f06b76;
-  --color-brand-400: #e8414f;
-  --color-brand-500: #d7192a;
-  --color-brand-600: #b3121f;
-  --color-brand-700: #8e0e18;
+  --color-brand-300: #5fa9cc;
+  --color-brand-400: #0e75a3;
+  --color-brand-500: #086288;
+  --color-brand-600: #064d6b;
+  --color-brand-700: #043851;
 
-  /* "Ink" neutrals: dark surfaces through to light sections */
-  --color-ink-950: #0b0c0e;
-  --color-ink-900: #121417;
-  --color-ink-850: #171a1e;
-  --color-ink-800: #1d2025;
-  --color-ink-700: #272b31;
-  --color-ink-600: #363b42;
-  --color-ink-500: #5b616b;
-  --color-ink-400: #8b919a;
-  --color-ink-300: #b9bec5;
-  --color-ink-200: #dadde1;
-  --color-ink-100: #eef0f2;
-  --color-ink-50: #f6f7f8;
+  --color-accent-200: #bedeff;
+  --color-accent-300: #9cc9f2;
 
-  /* Supporting colours for status messages */
+  /* "ink" is the neutral ramp: ink-950/900/850 are the lightest surfaces
+     (backgrounds), ink-100/50 are the darkest (primary text) — the numbers
+     run high-to-low in lightness, not light-to-dark, to keep every existing
+     bg-ink-900 / text-ink-300 class name working unchanged. */
+  --color-ink-950: #ffffff;
+  --color-ink-900: #f5efe1;
+  --color-ink-850: #fdfbf6;
+  --color-ink-800: #efe6d2;
+  --color-ink-700: #e3d9c3;
+  --color-ink-600: #cfc3a8;
+  --color-ink-500: #8a8066;
+  --color-ink-400: #6b6354;
+  --color-ink-300: #4a5a63;
+  --color-ink-200: #2e4650;
+  --color-ink-100: #173344;
+  --color-ink-50: #06202c;
+
   --color-success-500: #1f9d55;
   --color-warning-500: #d98e04;
+
+  /* Most `text-white` / `border-white/NN` usage in components means
+     "primary text or a subtle line on the page surface", which must be
+     dark now — so `white` itself is redefined to ink-100's dark tone.
+     `paper` is true white, for the few spots that sit on a colour or an
+     image overlay and must stay white regardless of theme. */
+  --color-white: #173344;
+  --color-paper: #ffffff;
 
   --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'Montserrat', 'Inter', ui-sans-serif, system-ui, sans-serif;
 
   --radius-card: 0.75rem;
-  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.25), 0 8px 24px rgb(0 0 0 / 0.25);
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.08), 0 8px 24px rgb(8 98 136 / 0.12);
 }
 
 @layer base {
   html {
-    color-scheme: dark;
+    color-scheme: light;
   }
 
   body {
@@ -55,7 +67,6 @@
     @apply font-display tracking-tight text-white;
   }
 
-  /* Visible keyboard focus everywhere (accessibility) */
   :focus-visible {
     @apply outline-2 outline-offset-2 outline-brand-400;
   }
