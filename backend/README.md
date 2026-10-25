@@ -5,55 +5,50 @@ This folder is separate from the frontend (`../src`) — the two deploy as separ
 
 ## Status
 
-- **Phase B1** — an app factory (`src/app.ts`) with a health check and a shared
-  JSON error shape, built with a visible Red → Green → Refactor commit history.
-- **Phase B2** — Prisma schema (`prisma/schema.prisma`: `User`, `Vehicle`) and a
-  seed script that migrates the frontend's existing `cars.json` dataset into
-  Postgres. No auth or vehicle *endpoints* yet — those are next.
+Complete: auth (register/login, JWT), vehicle CRUD and search, the
+"sell your car" approval workflow (a listing stays `pending` until an admin
+approves it), and the "buy" approval workflow (a `PurchaseRequest` only
+decrements stock once an admin approves it — see `src/purchaseRequests/`).
+See [`../docs/tdd-git-workflow.md`](../docs/tdd-git-workflow.md) for how the
+commit history demonstrates Red→Green→Refactor for each slice.
 
 ## Run it
 
 ```bash
 npm install          # also runs `prisma generate` automatically (postinstall)
 cp .env.example .env # then fill in DATABASE_URL (any local/hosted Postgres) and JWT_SECRET
-npx prisma migrate dev --name init   # creates the tables from prisma/schema.prisma
+npx prisma db push                   # creates/syncs the tables from prisma/schema.prisma
 npm run prisma:seed                  # migrates prisma/seed-data/cars.json into Postgres
 npm run dev          # starts http://localhost:4000, restarts on save
 npm test             # runs the Vitest suite once
 npm run build         # type-checks and compiles to dist/
 ```
 
-**Note on this session:** the Prisma schema, DB client, and seed script were written and
-their logic fully verified (all 686 real dataset records migrated with zero errors,
-checked field-by-field), but `npx prisma generate`/`migrate` could not be *run* from the
-cloud sandbox this was built in — the sandbox's network policy blocks the host Prisma's
-CLI downloads its engine binary from. That's specific to that sandbox, not a problem with
-the code: running `npm install` here, on any machine with normal internet access, triggers
-`prisma generate` automatically, and `npx prisma migrate dev --name init` will work the
-first time you run it.
-
 ## Project structure
 
 ```
 prisma/
-  schema.prisma         User + Vehicle models (see field-by-field notes in the file)
-  seed.ts                migrates prisma/seed-data/cars.json into Postgres, upsert by stockNumber
-  seed-data/cars.json     a copied-in snapshot of the frontend's dataset (../src/data/cars.json)
+  schema.prisma          User, Vehicle, PurchaseRequest models
+  seed.ts                 migrates prisma/seed-data/cars.json into Postgres, upsert by stockNumber
+  seed-data/cars.json      a copied-in snapshot of the frontend's dataset (../src/data/cars.json)
 src/
-  app.ts              Express app factory (no listener) — what tests exercise
-  server.ts            real entrypoint; the only file that calls app.listen()
-  config/env.ts         the one place process.env is read
-  db/prismaClient.ts     the one PrismaClient instance, shared everywhere
-  data/mapLegacyVehicle.ts  pure transform: one legacy car record -> one Vehicle row
-  types/legacyCar.ts       shape of a record in the legacy dataset
-  routes/               one router per resource (health.router.ts so far)
+  app.ts               Express app factory (no listener) — what tests exercise
+  server.ts             real entrypoint; the only file that calls app.listen()
+  config/env.ts          the one place process.env is read
+  db/prismaClient.ts      the one PrismaClient instance, shared everywhere
+  data/mapLegacyVehicle.ts   pure transform: one legacy car record -> one Vehicle row
+  types/legacyCar.ts        shape of a record in the legacy dataset
+  types/express.d.ts        augments Express's Request with `user` (set by requireAuth)
+  auth/                  registration, login, password hashing, JWT, user repository
+  vehicles/              vehicle business rules, repository interface, Prisma-backed repository
+  purchaseRequests/      buyer requests + admin approve/reject; approving decrements the vehicle's stock
+  routes/                one router per resource
   middleware/
-    errorHandler.ts      ApiError, notFoundHandler, errorHandler — the whole
-                         API's single error-response shape: { error: { message, details? } }
-test/
-  health.test.ts        GET /api/health
-  notFound.test.ts      unknown routes return a consistent 404
-  mapLegacyVehicle.test.ts  the dataset-migration logic, fully unit tested (no DB needed)
+    auth.ts               requireAuth / requireAdmin
+    errorHandler.ts        ApiError, notFoundHandler, errorHandler — the whole
+                           API's single error-response shape: { error: { message, details? } }
+test/                   one spec file per slice — services/repositories tested against an
+                         in-memory fake, routers tested end to end with Supertest
 ```
 
 ## Why an app factory
@@ -65,14 +60,17 @@ app instance and nothing ever listens on a real socket during `npm test`.
 
 ## Environment
 
-Copy `.env.example` to `.env`. `DATABASE_URL` and `JWT_SECRET` aren't used yet —
-they're wired up in the data-model and auth phases, but are documented now so
-the eventual `.env` only needs filling in once.
+Copy `.env.example` to `.env` and fill in `DATABASE_URL` (a Postgres connection
+string — Neon, local, or any host) and `JWT_SECRET` (any long random string).
 
-## TDD workflow used here (and going forward)
+## TDD workflow used here
 
-Every endpoint is added the same way, and the commit history says so explicitly:
+Every backend slice was added the same way, and the commit history says so
+explicitly:
 
-1. **Red** — write a Supertest spec for behaviour that doesn't exist yet; run it, watch it fail.
+1. **Red** — write a Vitest/Supertest spec for behaviour that doesn't exist yet; it fails.
 2. **Green** — write the smallest implementation that makes it pass.
-3. **Refactor** — clean up (extract a router, share logic) with the test suite staying green throughout.
+3. **Refactor** — clean up (extract a helper, harden an endpoint) with the test suite staying green throughout.
+
+See [`../docs/tdd-git-workflow.md`](../docs/tdd-git-workflow.md) for the full
+commit-by-commit breakdown and the AI co-authorship convention used throughout.
