@@ -1,6 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { Prisma } from '@prisma/client';
 import { prisma } from '../src/db/prismaClient.js';
 import { mapLegacyVehicle } from '../src/data/mapLegacyVehicle.js';
 import type { LegacyCar } from '../src/types/legacyCar.js';
@@ -28,10 +29,13 @@ async function main(): Promise<void> {
   let seeded = 0;
   for (const car of cars) {
     const data = mapLegacyVehicle(car);
+    // Prisma's Json columns need `Prisma.JsonNull` (not a bare `null`) to mean
+    // "set this column to SQL NULL" — same gotcha as prismaVehicleRepository.ts.
+    const fuelEconomy = data.fuelEconomy === null ? Prisma.JsonNull : data.fuelEconomy;
     await prisma.vehicle.upsert({
       where: { stockNumber: data.stockNumber },
-      create: data,
-      update: data,
+      create: { ...data, fuelEconomy } as Prisma.VehicleUncheckedCreateInput,
+      update: { ...data, fuelEconomy } as Prisma.VehicleUncheckedUpdateInput,
     });
     seeded += 1;
   }
