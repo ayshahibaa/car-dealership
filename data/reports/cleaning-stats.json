@@ -1,0 +1,19 @@
+{
+  "changes_logged": 326,
+  "drivetrain_abbrev_unified": 10,
+  "economy_missing": 38,
+  "economy_reordered": 18,
+  "engine_in_transmission": 13,
+  "engine_stock_code": 35,
+  "engine_truncated": 148,
+  "excluded_duplicates": 1,
+  "fixed_land_rover": 12,
+  "fuel_corrected": 79,
+  "fuel_petrol_unconfirmed": 125,
+  "fuel_set_unknown": 30,
+  "sellers": 233,
+  "transmission_missing": 83,
+  "transmission_standardised": 416,
+  "vin_from_engine": 13,
+  "vin_from_transmission": 29
+}

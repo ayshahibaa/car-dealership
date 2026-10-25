@@ -1,0 +1,9 @@
+[
+  {
+    "id": "ff48e725-6767-4e89-86ff-e7a29b242c5e",
+    "sourceRow": 85,
+    "reason": "duplicate",
+    "duplicateOf": "a33f75fd-b88e-43de-a405-ecbcffb7ae47",
+    "note": "Identical to the kept record in every field except id and quantity."
+  }
+]

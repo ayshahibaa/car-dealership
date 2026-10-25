@@ -1,0 +1,37 @@
+import { useId } from 'react';
+
+/**
+ * <Input label="Email" type="email" value={v} onChange={...} error={errors.email} />
+ * Used by the enquiry and sell forms (Phase 8). Built now so every form shares
+ * the same look and the same accessible label / error wiring.
+ */
+export default function Input({ label, error, hint, id, className = '', ...rest }) {
+  const autoId = useId();
+  const inputId = id ?? autoId;
+  const describedBy = error ? `${inputId}-error` : hint ? `${inputId}-hint` : undefined;
+
+  return (
+    <div className={className}>
+      {label && (
+        <label htmlFor={inputId} className="mb-1.5 block text-sm font-medium text-ink-200">
+          {label}
+          {rest.required && <span className="text-brand-400"> *</span>}
+        </label>
+      )}
+      <input
+        id={inputId}
+        aria-invalid={!!error}
+        aria-describedby={describedBy}
+        className={`w-full rounded-md border bg-ink-850 px-3 py-2.5 text-white placeholder:text-ink-500 focus:outline-none focus:ring-2 ${
+          error ? 'border-brand-500 focus:ring-brand-500/40' : 'border-white/15 focus:border-brand-500 focus:ring-brand-500/40'
+        }`}
+        {...rest}
+      />
+      {error ? (
+        <p id={`${inputId}-error`} className="mt-1.5 text-sm text-brand-400">{error}</p>
+      ) : hint ? (
+        <p id={`${inputId}-hint`} className="mt-1.5 text-sm text-ink-400">{hint}</p>
+      ) : null}
+    </div>
+  );
+}

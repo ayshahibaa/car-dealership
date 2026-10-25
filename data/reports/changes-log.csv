@@ -1,0 +1,327 @@
+id,field,old,new,reason
+8ee08218-235a-4aeb-b6c2-14c88d1f87ee,fuelType,Diesel,Hybrid,corrected from record evidence: name says hybrid
+b756593b-9717-4b65-b565-bed28087c423,fuelType,Diesel,Hybrid,corrected from record evidence: name says hybrid
+44c884f2-e37b-4d40-8e9a-9f46756f0c5f,exteriorColor,BLUE,Blue,ALL-CAPS colour name
+44c884f2-e37b-4d40-8e9a-9f46756f0c5f,fuelEconomy,0.0-25.0,,zero or implausible value
+23a11252-30d5-4373-a77c-9bf62b875f7a,engine,C2316P,,"value is a stock code, not an engine description"
+23a11252-30d5-4373-a77c-9bf62b875f7a,transmission,5YJXCBE2XMF319604,,"value is a VIN, moved to vin"
+202d101f-ce92-4377-bdc8-00fa1a0d58b0,make,Land,Land Rover,brand name was split across make and model
+a7b5aa00-b2cd-4af7-bfc9-a5f193e0b937,engine,55870,,"value is a stock code, not an engine description"
+a7b5aa00-b2cd-4af7-bfc9-a5f193e0b937,transmission,5YJ3E1EA3NF190228,,"value is a VIN, moved to vin"
+a7b5aa00-b2cd-4af7-bfc9-a5f193e0b937,interiorColor,–,,placeholder value
+8522b37c-2c46-4004-9a13-4c01fbfeadd8,engine,24927101,,"value is a stock code, not an engine description"
+8522b37c-2c46-4004-9a13-4c01fbfeadd8,fuelType,Diesel,Electric,corrected from record evidence: name matches 'Lightning'
+8522b37c-2c46-4004-9a13-4c01fbfeadd8,fuelEconomy,1.0-1.0,,zero or implausible value
+505bd26c-7424-4363-899e-7bfec92f1123,engine,HL7583,,"value is a stock code, not an engine description"
+010651b4-2ea8-4d43-be8d-c0843f8fd80f,engine,A866,,"value is a stock code, not an engine description"
+010651b4-2ea8-4d43-be8d-c0843f8fd80f,fuelType,Diesel,Electric,corrected from record evidence: name matches '^Tesla '
+f3c6a6ed-38ea-42ca-9483-a154b526af62,fuelType,Diesel,Hybrid,corrected from record evidence: engine text says hybrid / gas-electric
+96c5c906-4d95-4ec5-9e1f-c4b3034b5bf9,interiorColor,–,,placeholder value
+0e83a781-ac30-46e8-9553-b116f6b98c38,engine,N8489,,"value is a stock code, not an engine description"
+308c939b-22c9-4847-a453-14bb3735b41e,fuelType,Diesel,Hybrid,corrected from record evidence: name says hybrid
+808624ef-68ce-4fcd-acd2-f478bcf0f1b7,interiorColor,–,,placeholder value
+fa9d1967-dca1-432d-9c69-ca2930bc2705,fuelType,Diesel,Hybrid,corrected from record evidence: engine text says hybrid / gas-electric
+677a9e0e-8761-4a93-b370-0e45cac48457,fuelType,Diesel,Hybrid,corrected from record evidence: engine text says hybrid / gas-electric
+19e9fd87-6805-468e-8341-b64cbe175a44,fuelType,Diesel,Petrol,corrected from record evidence: engine text says petrol/gasoline injection
+c753bb2e-80fc-42c1-bd01-9487958476a1,fuelType,Diesel,Hybrid,corrected from record evidence: engine text says hybrid / gas-electric
+5cfffec4-a184-4a54-8cc4-437cdde3e405,fuelType,Diesel,Plug-in Hybrid,corrected from record evidence: name matches '\b4xe\b'
+b8e0ad90-431e-4c29-99cb-3f164dbe09df,engine,PM4183A,,"value is a stock code, not an engine description"
+f0902eae-c4c8-4d29-9b47-3c739a3078cc,interiorColor,–,,placeholder value
+31220983-6fcd-416f-8bf6-371c9404d7df,engine,P9784,,"value is a stock code, not an engine description"
+8fa2614b-91de-49aa-8bae-22829d76da8b,make,Land,Land Rover,brand name was split across make and model
+54bcaf46-f82c-40d0-8e7d-e3b43055fc0d,make,Land,Land Rover,brand name was split across make and model
+ce0280c6-cf6d-4739-926c-c32e6791fb5c,make,Land,Land Rover,brand name was split across make and model
+37a73887-1b4b-48f0-92e4-a3c6c72909f9,make,Land,Land Rover,brand name was split across make and model
+a03d2965-e23a-4f23-99cc-247c66544ddf,transmission,–,,placeholder value
+a03d2965-e23a-4f23-99cc-247c66544ddf,interiorColor,–,,placeholder value
+169046b3-b52f-48af-b66a-710499f5730f,fuelType,Hybrid,,original label not supported by name or engine; set to unknown
+46f6df87-e983-4f6e-8deb-6923d1de52f5,exteriorColor,–,,placeholder value
+46f6df87-e983-4f6e-8deb-6923d1de52f5,interiorColor,–,,placeholder value
+ab7cfeef-8f8e-4099-98d1-d4e0c499e0fd,fuelType,Diesel,Plug-in Hybrid,corrected from record evidence: name matches '\b530e\b'
+78b610de-c66b-48bc-a6d1-1bfefc7d28ac,fuelEconomy,0.0-0.0,,zero or implausible value
+f4f04f14-3a1f-4c31-a844-22baa5486e4d,fuelType,Diesel,Petrol,corrected from record evidence: engine text says petrol/gasoline injection
+65cee9f4-df4d-4d58-b6ed-21687fad32f8,fuelEconomy,0.0-17.0,,zero or implausible value
+9eb2ae27-6b5c-438f-abde-15861820724c,fuelEconomy,0.0-19.0,,zero or implausible value
+7cb40579-d205-427a-81e8-dd0bd6728f1f,fuelType,Diesel,Plug-in Hybrid,corrected from record evidence: name matches '\bPHEV\b'
+209b3b73-1396-44d4-856a-4eac23690e5c,engine,JTKKT624550102915,,"value is a VIN, moved to vin"
+209b3b73-1396-44d4-856a-4eac23690e5c,transmission,108.0HP 1.5L 4 Cylinder Engine Gasoline Fuel,,value is an engine description
+209b3b73-1396-44d4-856a-4eac23690e5c,engine,JTKKT624550102915,108.0HP 1.5L 4 Cylinder Engine Gasoline Fuel,engine description recovered from transmission column
+209b3b73-1396-44d4-856a-4eac23690e5c,fuelType,Diesel,Petrol,corrected from record evidence: engine text says petrol/gasoline injection
+8dd94b8e-629a-42e0-8919-218fc3b5c953,fuelType,Diesel,Hybrid,corrected from record evidence: engine text says hybrid / gas-electric
+e46111ca-386a-42d2-bea7-660e7a84266a,exteriorColor,–,,placeholder value
+e46111ca-386a-42d2-bea7-660e7a84266a,interiorColor,–,,placeholder value
+e303a974-bfc6-441e-8d99-0169f73c6687,fuelType,Diesel,Hybrid,corrected from record evidence: name says hybrid
+e303a974-bfc6-441e-8d99-0169f73c6687,interiorColor,–,,placeholder value
+aee4fad1-3bc6-4ed8-9049-754c0df69bc6,engine,RF055398,,"value is a stock code, not an engine description"
+aee4fad1-3bc6-4ed8-9049-754c0df69bc6,transmission,W1KEG1CB3RF055398,,"value is a VIN, moved to vin"
+aee4fad1-3bc6-4ed8-9049-754c0df69bc6,fuelEconomy,1.0-1.0,,zero or implausible value
+83f71367-42f5-4673-b5d9-65abcb7af570,interiorColor,TAN,Tan,ALL-CAPS colour name
+6fcfaf6a-c389-410c-b191-9cbd8b253a80,exteriorColor,BLUE LIGHT,Blue Light,ALL-CAPS colour name
+37d4e131-3b84-48f9-bf89-3ded797a0acf,engine,RF049412,,"value is a stock code, not an engine description"
+37d4e131-3b84-48f9-bf89-3ded797a0acf,transmission,W1KEG1CB7RF049412,,"value is a VIN, moved to vin"
+37d4e131-3b84-48f9-bf89-3ded797a0acf,fuelEconomy,1.0-1.0,,zero or implausible value
+87688df5-1b90-42c3-bc08-c4e6ab5262c1,fuelType,Diesel,Hybrid,corrected from record evidence: name says hybrid
+10cb0a3d-589a-40ca-90a9-7c42ba9d0055,engine,RT02413,,"value is a stock code, not an engine description"
+10cb0a3d-589a-40ca-90a9-7c42ba9d0055,transmission,3FMTK3SU2RMA02413,,"value is a VIN, moved to vin"
+10cb0a3d-589a-40ca-90a9-7c42ba9d0055,fuelEconomy,1.0-1.0,,zero or implausible value
+263f5f18-d343-403a-b742-cecc0c756842,fuelType,Hybrid,,original label not supported by name or engine; set to unknown
+49560eaf-4f06-4b9e-82aa-d6af345befb2,interiorColor,–,,placeholder value
+5bf3fde8-292c-4f25-8b98-8357fa55572b,fuelType,Diesel,Hybrid,corrected from record evidence: engine text says hybrid / gas-electric
+5bf3fde8-292c-4f25-8b98-8357fa55572b,exteriorColor,–,,placeholder value
+5bf3fde8-292c-4f25-8b98-8357fa55572b,interiorColor,–,,placeholder value
+c76169a0-7e5e-4ace-8ab9-e602c9ff839f,engine,RF055527,,"value is a stock code, not an engine description"
+c76169a0-7e5e-4ace-8ab9-e602c9ff839f,transmission,W1KEG1CBXRF055527,,"value is a VIN, moved to vin"
+c76169a0-7e5e-4ace-8ab9-e602c9ff839f,fuelEconomy,1.0-1.0,,zero or implausible value
+e9d570da-6e7e-4813-bfbd-c4b7aa9a8d6a,engine,RF054710,,"value is a stock code, not an engine description"
+e9d570da-6e7e-4813-bfbd-c4b7aa9a8d6a,transmission,W1KEG1CB7RF054710,,"value is a VIN, moved to vin"
+e9d570da-6e7e-4813-bfbd-c4b7aa9a8d6a,fuelEconomy,1.0-1.0,,zero or implausible value
+abec14e7-a739-42b9-844f-62b86f29feb1,fuelType,Diesel,Plug-in Hybrid,corrected from record evidence: name matches '\bPHEV\b'
+646b0aa8-1798-486d-b634-d7c5778b5330,fuelType,Hybrid,,original label not supported by name or engine; set to unknown
+426c5aed-68fb-4665-9069-11ae312379c4,fuelType,Diesel,Hybrid,corrected from record evidence: name says hybrid
+9e9bb386-da1c-4aa5-b2ad-45a09c16ee4f,fuelType,Diesel,Hybrid,corrected from record evidence: name says hybrid
+02cfd09b-e1a6-4016-9f97-9d3f8ed7617b,fuelEconomy,0.0-0.0,,zero or implausible value
+16fd6d6f-9945-478b-84ae-d2b659c1cfcc,engine,704548,,"value is a stock code, not an engine description"
+16fd6d6f-9945-478b-84ae-d2b659c1cfcc,transmission,JTMABACA8RA056087,,"value is a VIN, moved to vin"
+4be2650b-276c-4a96-a3d7-04ccdc9fa6e5,make,Land,Land Rover,brand name was split across make and model
+1790d819-beb0-4d84-ab8b-4e20f360bf0d,fuelType,Diesel,Hybrid,corrected from record evidence: name says hybrid
+1790d819-beb0-4d84-ab8b-4e20f360bf0d,exteriorColor,CELESTITE,Celestite,ALL-CAPS colour name
+f0022fd0-b505-40fc-bba8-b170e85fae16,fuelType,Diesel,Hybrid,corrected from record evidence: engine text says hybrid / gas-electric
+f0022fd0-b505-40fc-bba8-b170e85fae16,exteriorColor,–,,placeholder value
+f0022fd0-b505-40fc-bba8-b170e85fae16,interiorColor,–,,placeholder value
+e85e9885-6299-461c-82af-e534cf27da1c,fuelType,Diesel,Hybrid,corrected from record evidence: engine text says hybrid / gas-electric
+e85e9885-6299-461c-82af-e534cf27da1c,exteriorColor,–,,placeholder value
+e85e9885-6299-461c-82af-e534cf27da1c,interiorColor,–,,placeholder value
+d33c4f43-adc0-463c-a568-0f1af62ca9a8,fuelType,Diesel,Hybrid,corrected from record evidence: name says hybrid
+f8aa1c2a-59cd-4cc4-a5d9-cf836a7ba940,fuelType,Diesel,Hybrid,corrected from record evidence: name says hybrid
+80306cdd-f44c-49c7-869c-2cf6a3f7b6df,fuelType,Diesel,Hybrid,corrected from record evidence: name says hybrid
+508c5d4f-80e7-426f-a45b-47c4b997936b,fuelType,Diesel,Plug-in Hybrid,corrected from record evidence: name matches 'Karma Revero'
+1bd68b34-ac03-4455-832c-4409fad42ad1,exteriorColor,BLACK,Black,ALL-CAPS colour name
+1bd68b34-ac03-4455-832c-4409fad42ad1,interiorColor,BLACK,Black,ALL-CAPS colour name
+7fee0277-f2bd-4b43-826e-97f26f96f1b7,engine,19UYA42752A003976,,"value is a VIN, moved to vin"
+7fee0277-f2bd-4b43-826e-97f26f96f1b7,transmission,260.0HP 3.2L V6 Cylinder Engine Gasoline Fuel,,value is an engine description
+7fee0277-f2bd-4b43-826e-97f26f96f1b7,engine,19UYA42752A003976,260.0HP 3.2L V6 Cylinder Engine Gasoline Fuel,engine description recovered from transmission column
+7fee0277-f2bd-4b43-826e-97f26f96f1b7,fuelType,Diesel,Petrol,corrected from record evidence: engine text says petrol/gasoline injection
+7fb44385-95fc-4007-a6a5-38e14bd5fd7f,fuelType,Diesel,Hybrid,corrected from record evidence: name says hybrid
+a286b0a2-b1b5-4ced-8a0e-2bdbc41bc0f7,fuelType,Diesel,Hybrid,corrected from record evidence: name says hybrid
+9570138c-349f-4ebf-ada7-7b11d15a2d0d,make,Land,Land Rover,brand name was split across make and model
+0e95e0e1-898c-48b5-8762-ba4b12ec015d,engine,RF051137,,"value is a stock code, not an engine description"
+0e95e0e1-898c-48b5-8762-ba4b12ec015d,transmission,W1KEG1CBXRF051137,,"value is a VIN, moved to vin"
+0e95e0e1-898c-48b5-8762-ba4b12ec015d,fuelEconomy,1.0-1.0,,zero or implausible value
+d2f05a9d-2041-473a-8d2e-7e1dab84cb39,fuelType,Diesel,Petrol,corrected from record evidence: engine text says petrol/gasoline injection
+c5d3f602-91d5-46f6-8204-4e718e93fa55,fuelType,Diesel,Plug-in Hybrid,corrected from record evidence: name matches '\b745e\b'
+4b1a1da0-481f-46f8-9c05-935a75f6c882,interiorColor,Other,,placeholder value
+8579b7ef-9940-4176-aad0-53a053193039,make,Land,Land Rover,brand name was split across make and model
+221c2d3f-773c-454a-acb4-d7c783067c08,fuelType,Hybrid,Diesel,corrected from record evidence: name has diesel badge
+ebcd3e06-e12b-4ced-8902-fc6e679166b2,interiorColor,–,,placeholder value
+70689e43-cc57-4d01-b971-926f3bc49284,exteriorColor,TAN,Tan,ALL-CAPS colour name
+70689e43-cc57-4d01-b971-926f3bc49284,interiorColor,TAN,Tan,ALL-CAPS colour name
+9db1c7e3-2cbf-4e95-b85b-585737d7b679,fuelType,Hybrid,,original label not supported by name or engine; set to unknown
+bfc3da4e-7a07-471b-9fbe-d5e5c4806382,fuelType,Hybrid,,original label not supported by name or engine; set to unknown
+9c376a4a-70ac-4cd8-804a-41ab92a39391,fuelType,Diesel,Plug-in Hybrid,corrected from record evidence: name matches 'Karma Revero'
+1bf85413-c15a-4339-80b0-3ac24add4999,fuelType,Hybrid,,original label not supported by name or engine; set to unknown
+e04b6c86-fd24-4771-af5e-2f00c009f8d3,fuelType,Hybrid,,original label not supported by name or engine; set to unknown
+45a3dbf5-a616-47a3-9da1-a63a3ba284c1,engine,RF047110,,"value is a stock code, not an engine description"
+45a3dbf5-a616-47a3-9da1-a63a3ba284c1,transmission,W1KEG1CB3RF047110,,"value is a VIN, moved to vin"
+45a3dbf5-a616-47a3-9da1-a63a3ba284c1,fuelEconomy,1.0-1.0,,zero or implausible value
+7dab7bef-bd61-4361-a918-1a3e333ec92d,engine,UN3919,,"value is a stock code, not an engine description"
+7dab7bef-bd61-4361-a918-1a3e333ec92d,transmission,50EA1TEA7PA003448,,"value is a VIN, moved to vin"
+7dab7bef-bd61-4361-a918-1a3e333ec92d,fuelType,Diesel,Electric,corrected from record evidence: name matches '^Lucid '
+7dab7bef-bd61-4361-a918-1a3e333ec92d,fuelEconomy,1.0-1.0,,zero or implausible value
+a75bff44-1f14-4dec-aac2-5d2617198d32,fuelType,Hybrid,,original label not supported by name or engine; set to unknown
+cdbbfd59-6f56-45fd-af1c-cbe298524fe6,fuelEconomy,0.0-0.0,,zero or implausible value
+b9c386c2-fe99-48f5-bd91-0c74f7952bc2,exteriorColor,–,,placeholder value
+b9c386c2-fe99-48f5-bd91-0c74f7952bc2,interiorColor,–,,placeholder value
+f09c0dc6-9634-4ef7-a08e-f5a005963a1d,fuelType,Hybrid,,original label not supported by name or engine; set to unknown
+288ff49d-ff35-405b-ae70-3bdfbd9fe51b,fuelType,Petrol,Hybrid,corrected from record evidence: name says hybrid
+afeaa1ba-28dd-4f89-86d8-eb33a998398f,fuelType,Diesel,Petrol,corrected from record evidence: engine text says petrol/gasoline injection
+5731e815-ce5d-4ea9-8e23-b67bfcdb7db1,fuelType,Hybrid,,original label not supported by name or engine; set to unknown
+9f8f0f9b-8771-412b-821e-98cd50409c15,fuelType,Diesel,Plug-in Hybrid,corrected from record evidence: name matches '\bPHEV\b'
+73a4d3d6-d5f7-4f37-a60e-d743c66e769d,engine,N21752,,"value is a stock code, not an engine description"
+73a4d3d6-d5f7-4f37-a60e-d743c66e769d,transmission,50EA1GBA5NA002307,,"value is a VIN, moved to vin"
+73a4d3d6-d5f7-4f37-a60e-d743c66e769d,interiorColor,–,,placeholder value
+73a4d3d6-d5f7-4f37-a60e-d743c66e769d,fuelEconomy,1.0-1.0,,zero or implausible value
+67a66d7e-5ade-47dc-a0dd-05de38f3e4b3,interiorColor,–,,placeholder value
+92c58da0-f150-46a5-87cd-e186d489942f,fuelEconomy,0.0-0.0,,zero or implausible value
+62e9477b-1afa-42ce-8f9e-ff27c82ba903,fuelType,Petrol,Plug-in Hybrid,corrected from record evidence: name matches 'Polestar 1'
+62e9477b-1afa-42ce-8f9e-ff27c82ba903,fuelEconomy,0.0-0.0,,zero or implausible value
+1b7212fd-4997-407d-a6c1-354cdea04956,fuelType,Diesel,Hybrid,corrected from record evidence: engine text says hybrid / gas-electric
+1b7212fd-4997-407d-a6c1-354cdea04956,exteriorColor,–,,placeholder value
+1b7212fd-4997-407d-a6c1-354cdea04956,interiorColor,–,,placeholder value
+4cc34f82-a26f-44ec-8cee-939cc9713f3b,fuelType,Diesel,Petrol,corrected from record evidence: engine text says petrol/gasoline injection
+ff7211ec-7e29-4664-a0ac-e57878f49136,fuelType,Diesel,,original label not supported by name or engine; set to unknown
+faf9b08f-486d-4fdb-9636-6c86be2a3f60,interiorColor,–,,placeholder value
+7e6f068c-924e-432f-a171-77222538055f,engine,D-1667,,"value is a stock code, not an engine description"
+7e6f068c-924e-432f-a171-77222538055f,transmission,WBY1Z2C53EV284164,,"value is a VIN, moved to vin"
+7e6f068c-924e-432f-a171-77222538055f,fuelEconomy,1.0-1.0,,zero or implausible value
+00f14f83-3f9c-4ac3-9b5b-c648443241a4,fuelType,Diesel,,original label not supported by name or engine; set to unknown
+bb70810e-d71c-4d52-b184-2b5c2ce6cdd7,fuelEconomy,0.0-0.0,,zero or implausible value
+bb4e25cc-38e6-4381-a959-36be34615417,fuelType,Hybrid,,original label not supported by name or engine; set to unknown
+063bd7ad-73a4-4f0e-94a2-977cbd7afdb1,fuelType,Hybrid,Electric,corrected from record evidence: name matches 'XC40 Recharge'
+f604c35c-a11c-4fd2-a7f6-1343d86662a5,fuelType,Hybrid,,original label not supported by name or engine; set to unknown
+e6e11d41-4f06-4704-bfa3-857743b5fc00,engine,JNKCV54E04M805673,,"value is a VIN, moved to vin"
+e6e11d41-4f06-4704-bfa3-857743b5fc00,transmission,280.0HP 3.5L V6 Cylinder Engine Gasoline Fuel,,value is an engine description
+e6e11d41-4f06-4704-bfa3-857743b5fc00,engine,JNKCV54E04M805673,280.0HP 3.5L V6 Cylinder Engine Gasoline Fuel,engine description recovered from transmission column
+e6e11d41-4f06-4704-bfa3-857743b5fc00,fuelType,Diesel,Petrol,corrected from record evidence: engine text says petrol/gasoline injection
+a384e2b3-381f-4b50-9e2b-3c699f04a2cb,fuelType,Diesel,Plug-in Hybrid,corrected from record evidence: name matches 'Pacifica Hybrid'
+aad4ec49-15fb-43d4-a60b-e6d2815f35bd,fuelType,Diesel,Plug-in Hybrid,corrected from record evidence: name matches 'Plug-In'
+fb6ef780-f126-4217-9a0a-1ab9739bb80e,fuelType,Diesel,Hybrid,corrected from record evidence: name says hybrid
+bd949683-3b68-460d-b943-8ce59a62d814,fuelType,Diesel,Petrol,corrected from record evidence: engine text says petrol/gasoline injection
+51967335-eae6-4190-92ba-8287e41f2b4c,fuelType,Hybrid,,original label not supported by name or engine; set to unknown
+9d774d24-39dd-4a6e-b011-5a323eb1d421,exteriorColor,SILVER,Silver,ALL-CAPS colour name
+9d774d24-39dd-4a6e-b011-5a323eb1d421,interiorColor,BLACK,Black,ALL-CAPS colour name
+7645a780-905c-4d8e-beeb-3ef6d2c582e6,fuelType,Diesel,Petrol,corrected from record evidence: engine text says petrol/gasoline injection
+3d2220d2-0c8c-4f61-83a4-a78edf36ac68,exteriorColor,–,,placeholder value
+3d2220d2-0c8c-4f61-83a4-a78edf36ac68,interiorColor,–,,placeholder value
+c82a48af-b8f8-4d79-9c3d-033c9349e741,make,Land,Land Rover,brand name was split across make and model
+8fa9d020-7cbd-42a5-a2f1-905bae8ff111,fuelType,Hybrid,,original label not supported by name or engine; set to unknown
+ee8a01e5-beee-45e6-ae23-59e113645126,fuelType,Diesel,Petrol,corrected from record evidence: engine text says petrol/gasoline injection
+096ed805-acd4-4770-ad16-7c9408882369,fuelType,Diesel,Hybrid,corrected from record evidence: name says hybrid
+ee37b8f1-8d21-4621-a174-c932cf7d1a6f,engine,JTHFF2C28B2515125,,"value is a VIN, moved to vin"
+ee37b8f1-8d21-4621-a174-c932cf7d1a6f,transmission,204.0HP 2.5L V6 Cylinder Engine Gasoline Fuel,,value is an engine description
+ee37b8f1-8d21-4621-a174-c932cf7d1a6f,engine,JTHFF2C28B2515125,204.0HP 2.5L V6 Cylinder Engine Gasoline Fuel,engine description recovered from transmission column
+ee37b8f1-8d21-4621-a174-c932cf7d1a6f,fuelType,Diesel,Petrol,corrected from record evidence: engine text says petrol/gasoline injection
+b92ed201-2aa0-4ed7-ab3a-18c5f127dfb8,make,Land,Land Rover,brand name was split across make and model
+f2963eaa-4bd0-4ce1-ba69-ee50048dbb30,fuelType,Diesel,Plug-in Hybrid,corrected from record evidence: name matches '\bA7 e\b'
+e2584bf5-9a49-4ce3-a005-b19ad8340c94,engine,25765,,"value is a stock code, not an engine description"
+e2584bf5-9a49-4ce3-a005-b19ad8340c94,transmission,KM8HC3A65RU005775,,"value is a VIN, moved to vin"
+69fdfffd-8c04-40d1-8f14-05cbebf90cb4,fuelType,Diesel,Petrol,corrected from record evidence: engine text says petrol/gasoline injection
+d468d7ec-07bf-48c5-bd7d-fb84c9c3109e,interiorColor,–,,placeholder value
+4fb5aa84-8fc3-41a5-a446-dfdd6b88c313,engine,240499,,"value is a stock code, not an engine description"
+4fb5aa84-8fc3-41a5-a446-dfdd6b88c313,transmission,KM8HE3A68RU006607,,"value is a VIN, moved to vin"
+4fb5aa84-8fc3-41a5-a446-dfdd6b88c313,interiorColor,–,,placeholder value
+eb7b8481-1477-4c16-bc61-1668b5fd6476,fuelType,Diesel,Plug-in Hybrid,corrected from record evidence: name matches 'E-Hybrid'
+b3dc14c5-4df5-4f0a-8ec4-b4fa4c072d5d,fuelType,Diesel,Hybrid,corrected from record evidence: engine text says hybrid / gas-electric
+904beaa9-daaf-4246-9534-f0b2da662416,fuelType,Diesel,Hybrid,corrected from record evidence: engine text says hybrid / gas-electric
+942d6a84-b5e7-4564-92de-77b046744717,fuelType,Diesel,Plug-in Hybrid,corrected from record evidence: name matches '\be-tron\b.*1\.4T'
+2ce2a091-f185-4f1a-b56e-5aa493f1d2d1,engine,H17083,,"value is a stock code, not an engine description"
+2ce2a091-f185-4f1a-b56e-5aa493f1d2d1,transmission,KM8HC3A6XRU005416,,"value is a VIN, moved to vin"
+d19a59e2-a5c9-4d95-93fe-a9708c4c3e46,engine,5UXKT0C33H0V96611,,"value is a VIN, moved to vin"
+d19a59e2-a5c9-4d95-93fe-a9708c4c3e46,transmission,313.0HP 2.0L 4 Cylinder Engine Plug-In Electric/Gas,,value is an engine description
+d19a59e2-a5c9-4d95-93fe-a9708c4c3e46,engine,5UXKT0C33H0V96611,313.0HP 2.0L 4 Cylinder Engine Plug-In Electric/Gas,engine description recovered from transmission column
+d19a59e2-a5c9-4d95-93fe-a9708c4c3e46,fuelType,Diesel,Plug-in Hybrid,corrected from record evidence: name matches 'X5 eDrive'
+5e3be714-0f83-4fcd-87f5-68025ffbf5ab,fuelEconomy,0.0-0.0,,zero or implausible value
+3dc277f0-3244-4a6f-b4c7-4c7c36ea28cf,engine,45939,,"value is a stock code, not an engine description"
+3dc277f0-3244-4a6f-b4c7-4c7c36ea28cf,transmission,KM8HC3A68RU005415,,"value is a VIN, moved to vin"
+3caab47f-69ac-4226-b545-6a0557ebe2cd,exteriorColor,BLUE,Blue,ALL-CAPS colour name
+3caab47f-69ac-4226-b545-6a0557ebe2cd,interiorColor,BLACK,Black,ALL-CAPS colour name
+e9c40ccd-55b0-47f4-94bc-8895e48508a5,drivetrain,–,,placeholder value
+c7294263-5b39-46ae-ac7c-373f8a7171d6,make,Land,Land Rover,brand name was split across make and model
+3d16aed1-1644-4a99-a388-e8044ae2f4ff,interiorColor,–,,placeholder value
+27232d31-6c8e-4ec4-b5b1-f914641bb78f,interiorColor,–,,placeholder value
+8ac82c03-f1dc-42b0-888f-9d0420b764d4,fuelType,Diesel,Plug-in Hybrid,corrected from record evidence: name matches 'Plug-In'
+41232e73-2e1b-485f-9708-7f715fcfa2fe,interiorColor,–,,placeholder value
+cdee5389-95d0-4508-9f32-40ee68c3a982,interiorColor,–,,placeholder value
+f72cf877-b1ca-4550-ba81-0b743841eea4,engine,B230658,,"value is a stock code, not an engine description"
+f72cf877-b1ca-4550-ba81-0b743841eea4,transmission,WB533CF05PCM88041,,"value is a VIN, moved to vin"
+6f34b855-35bc-45fa-946f-a70c0bb90404,engine,PA018116,,"value is a stock code, not an engine description"
+6f34b855-35bc-45fa-946f-a70c0bb90404,transmission,4JGGM1CB0PA018116,,"value is a VIN, moved to vin"
+6f34b855-35bc-45fa-946f-a70c0bb90404,fuelEconomy,1.0-1.0,,zero or implausible value
+5fd186ac-c3d4-485c-8cd2-de36e956f107,make,Land,Land Rover,brand name was split across make and model
+0ba8c38a-7319-4b9d-8eec-04ccac1c43e9,fuelType,Diesel,Petrol,corrected from record evidence: engine text says petrol/gasoline injection
+6592c09b-5bcc-4cb4-9476-082e545a309d,fuelEconomy,0.0-0.0,,zero or implausible value
+22140763-bfd5-4577-99e0-9c9114403cc3,interiorColor,–,,placeholder value
+277c2f5e-da59-48df-bce1-deb448dcb852,fuelType,Hybrid,,original label not supported by name or engine; set to unknown
+e7eed61c-f757-48bb-a17e-c3979e29cd15,exteriorColor,–,,placeholder value
+e7eed61c-f757-48bb-a17e-c3979e29cd15,interiorColor,–,,placeholder value
+b549c3c5-4a67-4e8c-bd1b-ff864d55f165,fuelType,Hybrid,,original label not supported by name or engine; set to unknown
+fe4c9581-208a-4e23-b227-0a2f9e069711,drivetrain,–,,placeholder value
+f5325596-044a-44a0-98c4-aac8d144d2f6,fuelType,Hybrid,,original label not supported by name or engine; set to unknown
+5c7f8ee2-24f1-4633-893a-1c4f0315cbf7,fuelType,Hybrid,,original label not supported by name or engine; set to unknown
+5f5878b1-edfe-478d-a627-2b68536cc29e,engine,YV1TS92D641342221,,"value is a VIN, moved to vin"
+5f5878b1-edfe-478d-a627-2b68536cc29e,transmission,194.0HP 2.9L Straight 6 Cylinder Engine Gasoline Fuel,,value is an engine description
+5f5878b1-edfe-478d-a627-2b68536cc29e,engine,YV1TS92D641342221,194.0HP 2.9L Straight 6 Cylinder Engine Gasoline Fuel,engine description recovered from transmission column
+5f5878b1-edfe-478d-a627-2b68536cc29e,fuelType,Diesel,Petrol,corrected from record evidence: engine text says petrol/gasoline injection
+5712bc71-48f5-4e96-a6f5-324e0f21f2a3,engine,WBA6D6C58GGK18310,,"value is a VIN, moved to vin"
+5712bc71-48f5-4e96-a6f5-324e0f21f2a3,transmission,600.0HP 4.4L 8 Cylinder Engine Gasoline Fuel,,value is an engine description
+5712bc71-48f5-4e96-a6f5-324e0f21f2a3,engine,WBA6D6C58GGK18310,600.0HP 4.4L 8 Cylinder Engine Gasoline Fuel,engine description recovered from transmission column
+5712bc71-48f5-4e96-a6f5-324e0f21f2a3,fuelType,Diesel,Petrol,corrected from record evidence: engine text says petrol/gasoline injection
+c5842c84-e118-4c88-bf6d-d29452dde1f1,fuelType,Hybrid,,original label not supported by name or engine; set to unknown
+8712b502-7118-4fa2-a859-b80d58d8fb30,exteriorColor,MYTHOS BLACK,Mythos Black,ALL-CAPS colour name
+8712b502-7118-4fa2-a859-b80d58d8fb30,interiorColor,BLACK INT,Black Int,ALL-CAPS colour name
+4dac2b47-86b4-475e-9667-98ecae681d7f,exteriorColor,–,,placeholder value
+4dac2b47-86b4-475e-9667-98ecae681d7f,interiorColor,–,,placeholder value
+4dac2b47-86b4-475e-9667-98ecae681d7f,fuelEconomy,0.0-0.0,,zero or implausible value
+26a161e1-bf0e-4e69-a649-53e0ffccba0e,engine,RF050495,,"value is a stock code, not an engine description"
+26a161e1-bf0e-4e69-a649-53e0ffccba0e,transmission,W1KEG1CB9RF050495,,"value is a VIN, moved to vin"
+26a161e1-bf0e-4e69-a649-53e0ffccba0e,fuelEconomy,1.0-1.0,,zero or implausible value
+8db3cdd4-a003-4a4d-b4c6-24d57f1b19dd,fuelType,Hybrid,,original label not supported by name or engine; set to unknown
+8e8201b0-b339-4604-bd6d-d6e83939415b,engine,5YMJU0C08N9J30087,,"value is a VIN, moved to vin"
+8e8201b0-b339-4604-bd6d-d6e83939415b,transmission,600.0HP 4.4L 8 Cylinder Engine Gasoline Fuel,,value is an engine description
+8e8201b0-b339-4604-bd6d-d6e83939415b,engine,5YMJU0C08N9J30087,600.0HP 4.4L 8 Cylinder Engine Gasoline Fuel,engine description recovered from transmission column
+8e8201b0-b339-4604-bd6d-d6e83939415b,fuelType,Diesel,Petrol,corrected from record evidence: engine text says petrol/gasoline injection
+bdea1e8e-6ed8-4585-bb4f-cb2b880b4a19,fuelType,Hybrid,,original label not supported by name or engine; set to unknown
+8cb43a18-7535-4590-8b5e-07ffcd0f5dd8,fuelType,Diesel,Hybrid,corrected from record evidence: name says hybrid
+f07ff4ab-2214-4ac7-a529-989cc20b898b,fuelType,Hybrid,,original label not supported by name or engine; set to unknown
+27c581b1-aab9-4198-8ade-b28b537b0f8d,fuelType,Diesel,Hybrid,corrected from record evidence: name says hybrid
+27c581b1-aab9-4198-8ade-b28b537b0f8d,fuelEconomy,0.0-0.0,,zero or implausible value
+d7545929-8115-4945-8f6f-649a2dafdcb4,fuelType,Petrol,Plug-in Hybrid,corrected from record evidence: name matches 'NX 450h\+'
+d7545929-8115-4945-8f6f-649a2dafdcb4,fuelEconomy,0.0-0.0,,zero or implausible value
+909da854-94c6-43a9-9016-eef5ca6db6b2,fuelEconomy,0.0-18.0,,zero or implausible value
+56839432-f839-4a93-82f1-45e079747e14,fuelType,Hybrid,,original label not supported by name or engine; set to unknown
+23946319-b06c-42d8-971a-211589b001c4,fuelEconomy,0.0-0.0,,zero or implausible value
+b366783e-f71b-48af-936b-5d8523e1f879,fuelEconomy,0.0-22.0,,zero or implausible value
+bb6460f5-b0a5-4b3a-9066-69c6115a8423,exteriorColor,–,,placeholder value
+bb6460f5-b0a5-4b3a-9066-69c6115a8423,interiorColor,–,,placeholder value
+6290dcdf-1cfc-4ea7-ae2b-85407adaee97,engine,JA4MW51SX5J002685,,"value is a VIN, moved to vin"
+6290dcdf-1cfc-4ea7-ae2b-85407adaee97,transmission,215.0HP 3.8L V6 Cylinder Engine Gasoline Fuel,,value is an engine description
+6290dcdf-1cfc-4ea7-ae2b-85407adaee97,engine,JA4MW51SX5J002685,215.0HP 3.8L V6 Cylinder Engine Gasoline Fuel,engine description recovered from transmission column
+6290dcdf-1cfc-4ea7-ae2b-85407adaee97,fuelType,Diesel,Petrol,corrected from record evidence: engine text says petrol/gasoline injection
+a3c16c1f-2400-48c6-b887-ca4af1372ed7,engine,JA4MW51S96J000685,,"value is a VIN, moved to vin"
+a3c16c1f-2400-48c6-b887-ca4af1372ed7,transmission,215.0HP 3.8L V6 Cylinder Engine Gasoline Fuel,,value is an engine description
+a3c16c1f-2400-48c6-b887-ca4af1372ed7,engine,JA4MW51S96J000685,215.0HP 3.8L V6 Cylinder Engine Gasoline Fuel,engine description recovered from transmission column
+a3c16c1f-2400-48c6-b887-ca4af1372ed7,fuelType,Diesel,Petrol,corrected from record evidence: engine text says petrol/gasoline injection
+1fa53b7b-0d85-4092-b6f7-eabc67807640,fuelType,Hybrid,,original label not supported by name or engine; set to unknown
+eb7648b6-4fe5-49eb-a01d-3baf4834d258,engine,Y1034,,"value is a stock code, not an engine description"
+eb7648b6-4fe5-49eb-a01d-3baf4834d258,transmission,WA1LAAGE1KB009714,,"value is a VIN, moved to vin"
+eb7648b6-4fe5-49eb-a01d-3baf4834d258,fuelType,Diesel,Electric,corrected from record evidence: name matches '^Audi e-tron'
+8367a47f-6d79-4574-9cfd-7b11b2d905a7,fuelType,Diesel,Plug-in Hybrid,corrected from record evidence: name matches 'NX 450h\+'
+c8d76625-9adb-4d98-9f39-53b7aba24624,engine,GU1307,,"value is a stock code, not an engine description"
+c8d76625-9adb-4d98-9f39-53b7aba24624,transmission,KM8K53AG2MU131805,,"value is a VIN, moved to vin"
+c8d76625-9adb-4d98-9f39-53b7aba24624,fuelEconomy,1.0-1.0,,zero or implausible value
+a1f3127e-17ad-4f62-a0ce-04ed77667f34,engine,M24098,,"value is a stock code, not an engine description"
+a1f3127e-17ad-4f62-a0ce-04ed77667f34,transmission,1GKB0NDE1RU105104,,"value is a VIN, moved to vin"
+a1f3127e-17ad-4f62-a0ce-04ed77667f34,fuelType,Diesel,Electric,corrected from record evidence: name matches 'HUMMER EV'
+a086c11e-a083-4541-af3a-cf9087c5b2b0,fuelType,Hybrid,,original label not supported by name or engine; set to unknown
+4faa1807-b62b-4443-9431-049bd3c9dc5a,fuelType,Hybrid,,original label not supported by name or engine; set to unknown
+34575d6f-cf99-4edb-b27e-7d58286a0037,engine,WMWMF73537TT85060,,"value is a VIN, moved to vin"
+34575d6f-cf99-4edb-b27e-7d58286a0037,transmission,172.0HP 1.6L 4 Cylinder Engine Gasoline Fuel,,value is an engine description
+34575d6f-cf99-4edb-b27e-7d58286a0037,engine,WMWMF73537TT85060,172.0HP 1.6L 4 Cylinder Engine Gasoline Fuel,engine description recovered from transmission column
+34575d6f-cf99-4edb-b27e-7d58286a0037,fuelType,Diesel,Petrol,corrected from record evidence: engine text says petrol/gasoline injection
+d7b477fd-01d9-4777-a0b0-7f7b1ccb7497,engine,24612,,"value is a stock code, not an engine description"
+d7b477fd-01d9-4777-a0b0-7f7b1ccb7497,transmission,3GNKDCRJ0RS215398,,"value is a VIN, moved to vin"
+d7b477fd-01d9-4777-a0b0-7f7b1ccb7497,fuelEconomy,1.0-1.0,,zero or implausible value
+3e232535-864d-4286-8dcb-083747c53243,engine,24613,,"value is a stock code, not an engine description"
+3e232535-864d-4286-8dcb-083747c53243,transmission,3GNKDBRJ5RS215438,,"value is a VIN, moved to vin"
+3e232535-864d-4286-8dcb-083747c53243,fuelEconomy,1.0-1.0,,zero or implausible value
+0b6bfc98-b20e-472f-9a9a-0cdcadb16a1f,exteriorColor,GRAY,Gray,ALL-CAPS colour name
+0b6bfc98-b20e-472f-9a9a-0cdcadb16a1f,interiorColor,BLACK,Black,ALL-CAPS colour name
+1888b14b-3fb4-4abf-8719-245365241e5a,interiorColor,–,,placeholder value
+bbb33e71-d0bc-4cfe-ab82-af4eaa760b73,fuelType,Diesel,Plug-in Hybrid,corrected from record evidence: name matches '\bPHEV\b'
+bbb33e71-d0bc-4cfe-ab82-af4eaa760b73,interiorColor,–,,placeholder value
+ac41c0e9-2087-4f9a-8cd0-28e472f13bd9,fuelType,Hybrid,,original label not supported by name or engine; set to unknown
+121aa268-c127-4755-ae37-03851fddf456,engine,UM6398,,"value is a stock code, not an engine description"
+121aa268-c127-4755-ae37-03851fddf456,transmission,50EA1PFA0PA002292,,"value is a VIN, moved to vin"
+121aa268-c127-4755-ae37-03851fddf456,fuelEconomy,1.0-1.0,,zero or implausible value
+5979c1ba-64dc-4cb2-993e-e9260eef902c,fuelType,Diesel,Hybrid,corrected from record evidence: name says hybrid
+a404003f-60de-479c-a813-76b1137bd9dd,exteriorColor,–,,placeholder value
+a404003f-60de-479c-a813-76b1137bd9dd,interiorColor,–,,placeholder value
+31e34d10-0c16-4451-9237-89894ba7c6b1,fuelType,Hybrid,,original label not supported by name or engine; set to unknown
+d15f2636-59f9-4656-9a2a-2e7705052377,fuelType,Hybrid,Electric,corrected from record evidence: name matches '^Polestar 2'
+42e44f81-f661-4e40-9d6b-aa660f273189,engine,84135,,"value is a stock code, not an engine description"
+42e44f81-f661-4e40-9d6b-aa660f273189,transmission,JN1DF0CD1PM710562,,"value is a VIN, moved to vin"
+42e44f81-f661-4e40-9d6b-aa660f273189,fuelEconomy,1.0-1.0,,zero or implausible value
+9415c0f8-ae6a-400b-ad48-5cba30522051,engine,3VV2B7AX8KM026323,,"value is a VIN, moved to vin"
+9415c0f8-ae6a-400b-ad48-5cba30522051,transmission,184.0HP 2.0L 4 Cylinder Engine Gasoline Fuel,,value is an engine description
+9415c0f8-ae6a-400b-ad48-5cba30522051,engine,3VV2B7AX8KM026323,184.0HP 2.0L 4 Cylinder Engine Gasoline Fuel,engine description recovered from transmission column
+9415c0f8-ae6a-400b-ad48-5cba30522051,fuelType,Diesel,Petrol,corrected from record evidence: engine text says petrol/gasoline injection
+fc6ccd42-f56d-44e6-bf73-db0d374f9ebf,engine,GU1218,,"value is a stock code, not an engine description"
+fc6ccd42-f56d-44e6-bf73-db0d374f9ebf,transmission,LPSED3KA1NL056058,,"value is a VIN, moved to vin"
+fc6ccd42-f56d-44e6-bf73-db0d374f9ebf,fuelEconomy,1.0-1.0,,zero or implausible value
+77e3018f-3daa-4758-90c5-d76a7487a10c,engine,GU1293,,"value is a stock code, not an engine description"
+77e3018f-3daa-4758-90c5-d76a7487a10c,transmission,LPSED3KA4NL055762,,"value is a VIN, moved to vin"
+77e3018f-3daa-4758-90c5-d76a7487a10c,fuelEconomy,1.0-1.0,,zero or implausible value
+b6f7a7f6-3218-41f2-83ac-9c1c3c62ecc3,engine,WBAUN93568VF56536,,"value is a VIN, moved to vin"
+b6f7a7f6-3218-41f2-83ac-9c1c3c62ecc3,transmission,300.0HP 3.0L Straight 6 Cylinder Engine Gasoline Fuel,,value is an engine description
+b6f7a7f6-3218-41f2-83ac-9c1c3c62ecc3,engine,WBAUN93568VF56536,300.0HP 3.0L Straight 6 Cylinder Engine Gasoline Fuel,engine description recovered from transmission column
+b6f7a7f6-3218-41f2-83ac-9c1c3c62ecc3,fuelType,Diesel,Petrol,corrected from record evidence: engine text says petrol/gasoline injection
+ed39168b-f2f7-4809-a13c-72335ad264fb,fuelEconomy,0.0-0.0,,zero or implausible value
