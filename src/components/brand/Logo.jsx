@@ -8,14 +8,6 @@ import {
   WORDMARK_TRANSFORM,
 } from './logoPaths.js';
 
-/**
- * Autoza logo as inline SVG (crisp at any size, no extra request).
- *
- * <Logo />                       full logo, white text (for dark backgrounds)
- * <Logo tone="dark" />           dark text (for light backgrounds)
- * <Logo variant="mark" />        badge only
- * className controls the size, e.g. "h-8 w-auto".
- */
 export default function Logo({ variant = 'full', tone = 'light', className = 'h-8 w-auto', title = 'Autoza' }) {
   const textColor = tone === 'light' ? '#FFFFFF' : '#121417';
   const width = variant === 'mark' ? LOGO_HEIGHT : LOGO_WIDTH;

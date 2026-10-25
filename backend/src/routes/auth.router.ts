@@ -4,12 +4,6 @@ import { loginUser, registerUser } from '../auth/authService.js';
 import type { UserRepository } from '../auth/userRepository.js';
 import { ApiError } from '../middleware/errorHandler.js';
 
-/**
- * Takes the repository as a parameter instead of importing the Prisma-backed
- * one directly, so this router can be tested against a fake repository
- * end-to-end (status codes, JSON shapes) with no database involved. The real
- * app wires it up with prismaUserRepository (see app.ts).
- */
 export function createAuthRouter(repo: UserRepository): Router {
   const router = Router();
 

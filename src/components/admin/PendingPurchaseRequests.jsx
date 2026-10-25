@@ -5,12 +5,6 @@ import { useAsync } from '../../hooks/useAsync.js';
 import { approvePurchaseRequest, getPendingPurchaseRequests, rejectPurchaseRequest } from '../../services/carService.js';
 import { formatCurrency } from '../../utils/formatCurrency.js';
 
-/**
- * Buyers' requests to purchase a car, awaiting a decision. Approving is
- * what actually completes the sale — decrements the vehicle's stock (see
- * backend's purchaseRequestService.ts) — rejecting leaves it untouched.
- * This is the admin side of PurchaseButton.jsx's "Request to buy".
- */
 export default function PendingPurchaseRequests({ token }) {
   const [version, setVersion] = useState(0);
   const [actioningId, setActioningId] = useState(null);

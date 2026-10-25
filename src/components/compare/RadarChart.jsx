@@ -1,5 +1,3 @@
-// Normalized 0-100 coordinate space so the SVG scales cleanly with its
-// container at any size (mobile included) without recomputing geometry.
 const CENTER = 50;
 const RADIUS = 30;
 const LABEL_RADIUS = 42;
@@ -11,15 +9,6 @@ function pointAt(angle, r) {
 
 const toPath = (pts) => pts.map((p) => p.join(',')).join(' ');
 
-/**
- * A static spider/radar chart comparing 2-3 cars across a handful of 0-100
- * scores (see radarScoring.js for how those are computed from real fields).
- * Styled after a reference comparison site: bold glowing outlines, overlap
- * areas that blend into a visibly distinct color, and pill-shaped axis
- * labels. It's a quick visual read, not a separate source of facts — the
- * grouped table below gives the exact figures behind every axis, so unlike
- * that reference this chart has no tap-to-reveal values of its own.
- */
 export default function RadarChart({ axes, series }) {
   const n = axes.length;
   if (n < 3) return null;
@@ -66,17 +55,12 @@ export default function RadarChart({ axes, series }) {
             <line key={i} x1={CENTER} y1={CENTER} x2={p[0]} y2={p[1]} stroke="rgba(255,255,255,0.14)" strokeWidth="0.3" />
           ))}
 
-          {/* mix-blend-mode: screen lightens wherever two cars' fills overlap, so the
-              overlap reads as a distinct third color instead of disappearing into a
-              uniform wash — the whole point of overlaying translucent shapes. */}
           <g style={{ mixBlendMode: 'screen' }}>
             {seriesPolygons.map((s) => (
               <polygon key={s.name} points={toPath(s.points)} fill={s.color} fillOpacity="0.5" stroke="none" />
             ))}
           </g>
 
-          {/* Each outline is drawn twice: a soft blurred halo behind, a crisp line on
-              top — the glow that makes two overlapping outlines stay easy to tell apart. */}
           {seriesPolygons.map((s) => (
             <polygon
               key={`${s.name}-glow`}

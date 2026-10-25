@@ -1,9 +1,3 @@
-/**
- * A small inline-SVG icon set, so the site needs no icon-font or icon-library
- * dependency. Every icon takes the same props: className (size/color via
- * Tailwind, e.g. "h-4 w-4 text-ink-400") and is purely decorative
- * (aria-hidden) — pair it with visible text for meaning.
- */
 const base = { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': true };
 
 export const IconHeart = ({ className = 'h-5 w-5', filled = false }) => (

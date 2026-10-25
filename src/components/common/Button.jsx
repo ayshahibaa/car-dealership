@@ -1,13 +1,5 @@
 import { buttonClasses } from '../../utils/buttonStyles.js';
 
-/**
- * <Button>Save</Button>
- * <Button variant="outline" size="sm">Cancel</Button>
- * <Button loading>Submitting…</Button>
- *
- * For a link that should look like a button, use buttonClasses() directly
- * with react-router's <Link> (see CarCard's "View details").
- */
 export default function Button({
   variant = 'primary',
   size = 'md',

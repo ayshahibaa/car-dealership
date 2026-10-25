@@ -1,15 +1,3 @@
-/**
- * validateCar.js — validation rules for inventory records.
- *
- * Use it for:
- *  - checking the cleaned dataset (see data/cleaning/check_dataset.mjs)
- *  - validating future records (e.g. a sell-your-car submission or an API response)
- *
- * validateCar(car) -> { valid: boolean, errors: string[], warnings: string[] }
- *   errors   = the record breaks the schema and should not be shown
- *   warnings = the record is usable but something looks unusual
- */
-
 export const ALLOWED = Object.freeze({
   fuelType: ['Petrol', 'Diesel', 'Hybrid', 'Plug-in Hybrid', 'Electric'],
   transmission: ['Automatic', 'Manual', 'CVT', 'Dual-clutch'],
@@ -25,7 +13,7 @@ export const ALLOWED = Object.freeze({
 
 export const LIMITS = Object.freeze({
   minYear: 1980,
-  maxYearAhead: 1, // current year + 1 (next model year)
+  maxYearAhead: 1,
   minPrice: 500,
   maxPrice: 2_000_000,
   maxMileage: 500_000,
@@ -47,12 +35,10 @@ export function validateCar(car, { currentYear = new Date().getFullYear() } = {}
     return { valid: false, errors: ['record is not an object'], warnings };
   }
 
-  // ---- required fields
   for (const field of ['id', 'title', 'make', 'model', 'year', 'price', 'mileage', 'bodyType', 'condition', 'listingStatus']) {
     if (isBlank(car[field])) errors.push(`${field} is required`);
   }
 
-  // ---- numbers
   if (!isBlank(car.year)) {
     if (!isInt(car.year)) errors.push('year must be an integer');
     else if (car.year < LIMITS.minYear || car.year > currentYear + LIMITS.maxYearAhead) {
@@ -75,7 +61,6 @@ export function validateCar(car, { currentYear = new Date().getFullYear() } = {}
     if (car[f] != null && (!isInt(car[f]) || car[f] <= 0)) errors.push(`${f} must be a positive integer or null`);
   }
 
-  // ---- controlled vocabularies (null = unknown is allowed unless required)
   const vocab = [
     ['fuelType', ALLOWED.fuelType], ['transmission', ALLOWED.transmission], ['drivetrain', ALLOWED.drivetrain],
     ['bodyType', ALLOWED.bodyType], ['exteriorColorFamily', ALLOWED.exteriorColorFamily],
@@ -88,7 +73,6 @@ export function validateCar(car, { currentYear = new Date().getFullYear() } = {}
     }
   }
 
-  // ---- cross-field consistency
   if (car.fuelType === 'Electric' && car.engineCapacityL != null) {
     errors.push('an electric vehicle cannot have an engine capacity');
   }
@@ -106,11 +90,9 @@ export function validateCar(car, { currentYear = new Date().getFullYear() } = {}
     if (car.mileage / age > 40_000) warnings.push('mileage is very high for the vehicle age');
   }
 
-  // ---- identifiers & dates
   if (car.vin != null && !VIN_RE.test(car.vin)) errors.push('vin must be 17 characters (no I, O or Q)');
   if (car.listedAt != null && !ISO_DATE_RE.test(car.listedAt)) errors.push('listedAt must be YYYY-MM-DD');
 
-  // ---- images
   if (!Array.isArray(car.images)) {
     errors.push('images must be an array');
   } else {

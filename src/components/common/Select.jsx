@@ -1,9 +1,5 @@
 import { useId } from 'react';
 
-/**
- * <Select label="Body type" value={v} onChange={...} options={[{value:'suv', label:'SUV'}]} />
- * `options` items can also be plain strings. A leading `placeholder` renders as a disabled option.
- */
 export default function Select({ label, error, options = [], placeholder, id, className = '', ...rest }) {
   const autoId = useId();
   const selectId = id ?? autoId;

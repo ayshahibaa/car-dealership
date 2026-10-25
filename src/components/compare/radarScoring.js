@@ -1,15 +1,3 @@
-/**
- * Turns a few of each car's real fields into 0-100 scores for the radar
- * chart. Every score is relative to the *other cars in this comparison* —
- * "100" means "best of this group on this axis", not an absolute rating.
- * Nothing is invented: an axis only appears if every compared car actually
- * has a value for it (so it behaves the same way as the spec table below,
- * which also just omits a field no one has).
- */
-// A simple, transparent body-type-based comfort ranking (space/ride stereotype:
-// minivans and SUVs rank highest, sporty 2-doors lowest). This is a stated
-// heuristic for a demo "Comfort" axis, not a measured attribute of any car —
-// the spec table still shows the car's real bodyType so nothing is hidden.
 const BODY_TYPE_COMFORT_RANK = {
   Convertible: 2,
   Coupe: 3,

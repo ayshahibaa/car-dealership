@@ -1,10 +1,5 @@
 import { useId } from 'react';
 
-/**
- * <Input label="Email" type="email" value={v} onChange={...} error={errors.email} />
- * Used by the enquiry and sell forms (Phase 8). Built now so every form shares
- * the same look and the same accessible label / error wiring.
- */
 export default function Input({ label, error, hint, id, className = '', ...rest }) {
   const autoId = useId();
   const inputId = id ?? autoId;

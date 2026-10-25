@@ -29,12 +29,6 @@ function toPurchaseRequest(raw: RawRequest): PurchaseRequest {
   };
 }
 
-/**
- * The real PurchaseRequestRepository, backed by Postgres via Prisma — thin,
- * low-risk pass-through, same approach as prismaVehicleRepository.ts. All
- * the actual decision logic (can this request be made, can it be approved)
- * lives in purchaseRequestService.ts.
- */
 export const prismaPurchaseRequestRepository: PurchaseRequestRepository = {
   async create(vehicleId, buyerId) {
     const created = await prisma.purchaseRequest.create({ data: { vehicleId, buyerId } });

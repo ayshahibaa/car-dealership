@@ -14,12 +14,6 @@ interface LegacyDataset {
   cars: LegacyCar[];
 }
 
-/**
- * One-time migration of the frontend's cleaned demo dataset
- * (prisma/seed-data/cars.json — a copy of src/data/cars.json) into Postgres.
- * Upserts by stockNumber, so running this more than once updates existing
- * rows instead of duplicating them — safe to re-run after a schema change.
- */
 async function main(): Promise<void> {
   const raw = await readFile(DATASET_PATH, 'utf-8');
   const { meta, cars }: LegacyDataset = JSON.parse(raw);
@@ -29,8 +23,6 @@ async function main(): Promise<void> {
   let seeded = 0;
   for (const car of cars) {
     const data = mapLegacyVehicle(car);
-    // Prisma's Json columns need `Prisma.JsonNull` (not a bare `null`) to mean
-    // "set this column to SQL NULL" — same gotcha as prismaVehicleRepository.ts.
     const fuelEconomy = data.fuelEconomy === null ? Prisma.JsonNull : data.fuelEconomy;
     await prisma.vehicle.upsert({
       where: { stockNumber: data.stockNumber },

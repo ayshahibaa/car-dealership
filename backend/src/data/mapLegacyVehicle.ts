@@ -1,6 +1,5 @@
 import type { LegacyCar } from '../types/legacyCar.js';
 
-/** Everything mapLegacyVehicle produces, ready to pass straight to prisma.vehicle.create({ data: ... }). */
 export interface VehicleSeedInput {
   id: string;
   stockNumber: string;
@@ -40,14 +39,6 @@ export interface VehicleSeedInput {
   listedById: null;
 }
 
-/**
- * Turns one record from the legacy src/data/cars.json into a Vehicle row.
- * Pure and DB-free by design — the dataset itself never had a `quantity`
- * field, so the one real decision this function makes is: a car that was
- * already "sold" in the legacy data arrives with quantity 0 (nothing to
- * buy); everything else starts at quantity 1. `listedById` is always null
- * here — these are the originally-seeded cars, not listed by any app user.
- */
 export function mapLegacyVehicle(car: LegacyCar): VehicleSeedInput {
   return {
     id: car.id,

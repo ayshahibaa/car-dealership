@@ -21,23 +21,6 @@ import { CartProvider } from './context/CartContext.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
 import { RequireAdmin, RequireAuth } from './components/auth/RouteGuards.jsx';
 
-/**
- * Route map. Every page renders inside AppLayout (navbar + footer).
- *   /             HomePage
- *   /cars         InventoryPage
- *   /cars/:id     CarDetailsPage (id = car UUID or stock number)
- *   /favorites    FavoritesPage
- *   /compare      ComparePage (ids come from CompareContext, mirrored to ?ids=)
- *   /cart         CartPage (adding/removing needs no login; sending requests does)
- *   /orders       OrdersPage (your own purchase requests — RequireAuth)
- *   /orders/:id   OrderDetailPage (one request's receipt/confirmation — RequireAuth)
- *   /sell         SellCarPage (any logged-in user — RequireAuth; listing is pending until an admin approves it)
- *   /login        LoginPage
- *   /register     RegisterPage
- *   /admin/login  AdminLoginPage (same backend login, but verifies the ADMIN role)
- *   /admin        AdminDashboardPage (ADMIN role only — RequireAdmin)
- *   anything else NotFoundPage
- */
 const router = createBrowserRouter([
   {
     element: <AppLayout />,

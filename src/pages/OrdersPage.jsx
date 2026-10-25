@@ -13,13 +13,6 @@ const STATUS_BADGE = {
   REJECTED: { tone: 'danger', label: 'Rejected' },
 };
 
-/**
- * "My orders" — every purchase request the signed-in user has sent, newest
- * first, with its outcome. This is the one place a buyer can see what they
- * requested or bought, now that buying files a request instead of
- * completing instantly (see carService.js's requestPurchase and
- * PurchaseButton.jsx).
- */
 export default function OrdersPage() {
   const { token } = useAuth();
   const { data: requests, loading, error } = useAsync(() => getMyPurchaseRequests(token), [token]);

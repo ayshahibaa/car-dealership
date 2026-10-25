@@ -1,4 +1,3 @@
-/** Shape of one record in the frontend's src/data/cars.json — the migration source. */
 export interface LegacyCar {
   id: string;
   stockNumber: string;

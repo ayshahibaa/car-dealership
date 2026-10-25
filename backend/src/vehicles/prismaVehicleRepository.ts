@@ -2,19 +2,6 @@ import { Prisma } from '@prisma/client';
 import { prisma } from '../db/prismaClient.js';
 import type { NewVehicleInput, Vehicle, VehicleFilter, VehicleRepository, VehicleUpdateInput } from './vehicleRepository.js';
 
-/**
- * The real VehicleRepository, backed by Postgres via Prisma. Everything that
- * matters about *how* vehicle rules behave lives in vehicleService.ts and is
- * tested against a fake repository — this file is intentionally a thin,
- * low-risk pass-through, same approach as prismaUserRepository.ts.
- */
-
-/**
- * Prisma's Json columns treat a bare JS `null` as ambiguous — at runtime it
- * must be `Prisma.JsonNull` to mean "set this column to SQL NULL" (plain
- * `null` only means "field not provided", same as `undefined`, for every
- * other column type).
- */
 function toJsonInput(value: unknown) {
   return value === null ? Prisma.JsonNull : value;
 }
@@ -52,16 +39,10 @@ export const prismaVehicleRepository: VehicleRepository = {
         ...data,
         fuelEconomy: toJsonInput(data.fuelEconomy),
         images: toJsonInput(data.images),
-        // Seeded cars get "STK-####" from the data migration; user-listed
-        // cars (via the "sell your car" flow or the API directly) get a
-        // distinct, still-unique prefix so the two series never collide.
         stockNumber: `USR-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
         quantity: data.quantity ?? 1,
         listingStatus: 'available',
         listedById,
-        // Never trust approvalStatus from `data` even though NewVehicleInput
-        // already omits it at the type level — every new listing starts
-        // pending review, full stop.
         approvalStatus: 'pending',
       } as Prisma.VehicleUncheckedCreateInput,
     }) as unknown as Vehicle;

@@ -11,8 +11,6 @@ import Select from '../components/common/Select.jsx';
 import { useAsync } from '../hooks/useAsync.js';
 import { getCars, getFilterOptions } from '../services/carService.js';
 
-// Params that count as an active filter for the "Clear filters" link —
-// sort and page are navigation state, not filters.
 const FILTER_KEYS = ['q', 'make', 'bodyType', 'fuelType', 'transmission', 'drivetrain', 'color', 'minPrice', 'maxPrice', 'minYear', 'maxYear', 'maxMileage'];
 
 export default function InventoryPage() {
@@ -27,7 +25,7 @@ export default function InventoryPage() {
     const next = new URLSearchParams(searchParams);
     if (value === '' || value == null) next.delete(key);
     else next.set(key, String(value));
-    next.delete('page'); // any filter change starts back at page 1
+    next.delete('page');
     setSearchParams(next, { replace: true });
   }
 

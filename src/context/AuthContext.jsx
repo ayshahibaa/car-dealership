@@ -1,13 +1,6 @@
 import { createContext, useCallback, useContext, useMemo, useState } from 'react';
 import { clearSession, getStoredSession, login as loginRequest, register as registerRequest, storeSession } from '../services/authService.js';
 
-/**
- * Holds the signed-in session (JWT + user), backed by the real backend's
- * /api/auth endpoints. Lives above the router (see App.jsx), same reasoning
- * as CompareContext: a login has to survive moving between pages. Unlike
- * CompareContext this is NOT session-only — it's restored from
- * localStorage on load, so refreshing the page doesn't sign you out.
- */
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {

@@ -50,12 +50,10 @@ const initialForm = {
   description: '',
 };
 
-/** '' -> null, otherwise Number(value) — for optional numeric fields. */
 function optionalNumber(value) {
   return value === '' ? null : Number(value);
 }
 
-/** Builds the { min, max, unit } fuelEconomy JSON the backend stores, or null if neither mpg field was filled in. */
 function buildFuelEconomy(mpgMin, mpgMax, fuelType) {
   const min = optionalNumber(mpgMin);
   const max = optionalNumber(mpgMax);
@@ -65,19 +63,6 @@ function buildFuelEconomy(mpgMin, mpgMax, fuelType) {
   return { min: Math.min(lo, hi), max: Math.max(lo, hi), unit: fuelType === 'Electric' ? 'MPGe' : 'mpg' };
 }
 
-/**
- * The real "sell your car" form — any logged-in user can list a vehicle,
- * which calls POST /api/vehicles on the real backend (see carService.js's
- * createVehicle). Requires sign-in; the /sell route wraps this page in
- * RequireAuth (see App.jsx), so by the time this renders `user` is set.
- *
- * Covers every column of the Vehicle table a seller could reasonably know
- * about their own car (see backend/prisma/schema.prisma); it leaves out the
- * handful of columns that are either server-managed (stockNumber, quantity,
- * listingStatus, listedById) or demo/analytics bookkeeping from the original
- * dataset migration (sellerId, dataFlags, sourceRow, listedAt,
- * exteriorColorFamily) rather than something a real seller would fill in.
- */
 export default function SellCarPage() {
   const { user, token } = useAuth();
 

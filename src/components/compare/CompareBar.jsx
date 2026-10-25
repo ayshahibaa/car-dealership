@@ -4,11 +4,6 @@ import { useAsync } from '../../hooks/useAsync.js';
 import { getCarsByIds } from '../../services/carService.js';
 import { buttonClasses } from '../../utils/buttonStyles.js';
 
-/**
- * A floating bar, visible site-wide once at least one car is selected for
- * comparison. Lets the shopper see what they've picked, clear it, or jump to
- * the full /compare page once they have at least two.
- */
 export default function CompareBar() {
   const { ids, count, max, clear, remove } = useCompare();
   const { data: cars } = useAsync(() => (ids.length ? getCarsByIds(ids) : Promise.resolve([])), [ids.join(',')]);

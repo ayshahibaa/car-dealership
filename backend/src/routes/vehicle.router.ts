@@ -25,18 +25,6 @@ function parseFilter(query: Record<string, unknown>): VehicleFilter {
   return filter;
 }
 
-/**
- * Takes the repository as a parameter instead of importing the Prisma-backed
- * one directly, so this router can be tested end-to-end against a fake
- * repository (status codes, auth rules) with no database — same pattern as
- * auth.router.ts. The real app wires it up with prismaVehicleRepository.
- *
- * Permissions: listing/search are public (approved + in-stock only — see
- * prismaVehicleRepository.ts's buildWhere); create and update are open to
- * any logged-in user; delete, approve/reject and restock are admin-only.
- * A new listing always starts "pending" (prismaVehicleRepository.ts forces
- * this server-side) and only appears in public listings once approved.
- */
 export function createVehicleRouter(repo: VehicleRepository): Router {
   const router = Router();
 
@@ -101,10 +89,6 @@ export function createVehicleRouter(repo: VehicleRepository): Router {
 
   router.put('/:id', requireAuth, async (req, res, next) => {
     try {
-      // approvalStatus/quantity/listingStatus drive moderation and stock —
-      // stripped here so this general-purpose edit endpoint can't be used to
-      // self-approve a listing or fake a stock level; approve/reject/restock
-      // (all admin-only) are the only routes allowed to change them.
       const { approvalStatus: _approvalStatus, quantity: _quantity, listingStatus: _listingStatus, ...editable } = req.body ?? {};
       const vehicle = await updateVehicle(repo, req.params.id as string, editable);
       res.status(200).json(vehicle);

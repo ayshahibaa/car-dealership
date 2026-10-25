@@ -1,18 +1,3 @@
-/**
- * filterCars.js — pure search / filter / sort / paginate logic.
- *
- * It has no React and no storage, so it is easy to test and the backend
- * developer can mirror the same rules in GET /api/cars.
- *
- * Query parameters (all optional):
- *   q             free text: matches title, make, model, variant, stock number
- *   make, model   exact match (case-insensitive)
- *   bodyType, fuelType, transmission, drivetrain, color   one value or an array
- *   minPrice, maxPrice, minYear, maxYear, maxMileage       numbers
- *   sort          one of SORT_OPTIONS keys
- *   page, pageSize
- */
-
 export const SORT_OPTIONS = Object.freeze({
   recent: { label: 'Recently added', compare: (a, b) => b.listedAt.localeCompare(a.listedAt) || a.stockNumber.localeCompare(b.stockNumber) },
   'price-asc': { label: 'Price: low to high', compare: (a, b) => a.price - b.price },
@@ -79,7 +64,6 @@ export function paginate(items, page = 1, pageSize = 12) {
   };
 }
 
-/** Full pipeline: filter -> sort -> paginate. */
 export function queryCars(cars, query = {}) {
   const filtered = filterCars(cars, query);
   const sorted = sortCars(filtered, query.sort);

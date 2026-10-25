@@ -5,12 +5,6 @@ import { useAsync } from '../../hooks/useAsync.js';
 import { approveVehicleListing, getPendingVehicles, rejectVehicleListing } from '../../services/carService.js';
 import { formatCurrency } from '../../utils/formatCurrency.js';
 
-/**
- * Cars submitted through "Sell your car", awaiting moderation. Approving is
- * what makes a listing start showing up on the site (see
- * carService.js's getCommunityListings) — nothing here is public until an
- * admin acts on it.
- */
 export default function PendingListings({ token }) {
   const [version, setVersion] = useState(0);
   const [actioningId, setActioningId] = useState(null);

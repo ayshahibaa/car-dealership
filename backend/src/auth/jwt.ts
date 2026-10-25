@@ -19,7 +19,6 @@ export function signAccessToken(payload: AccessTokenPayload, options: SignOption
   return jwt.sign(payload, secret, { expiresIn: options.expiresIn ?? DEFAULT_EXPIRY } as jwt.SignOptions);
 }
 
-/** Throws (jwt.verify's own error) for a bad signature, malformed token, or expiry. */
 export function verifyAccessToken(token: string, secret: string = env.jwtSecret): AccessTokenPayload {
   return jwt.verify(token, secret) as AccessTokenPayload & jwt.JwtPayload;
 }

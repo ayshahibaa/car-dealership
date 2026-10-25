@@ -13,15 +13,10 @@ function getFormatter(locale, currency) {
   return formatterCache.get(key);
 }
 
-/** Converts a stored price into the display currency. */
 export function convertPrice(amount, { exchangeRateFromData = appConfig.region.exchangeRateFromData } = {}) {
   return typeof amount === 'number' ? amount * exchangeRateFromData : null;
 }
 
-/**
- * formatCurrency(24500) -> "$24,500" with the default config.
- * Returns the fallback text when the price is missing.
- */
 export function formatCurrency(
   amount,
   { locale = appConfig.region.locale, currency = appConfig.region.currency, fallback = 'Price on request' } = {},

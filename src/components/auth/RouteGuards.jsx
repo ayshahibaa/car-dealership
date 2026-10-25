@@ -2,7 +2,6 @@ import { Navigate, useLocation } from 'react-router';
 import { useAuth } from '../../context/AuthContext.jsx';
 import { EmptyState } from '../common/StatusMessage.jsx';
 
-/** Wrap a route's element: redirects to /login (preserving where you were headed) if not signed in. */
 export function RequireAuth({ children }) {
   const { isAuthenticated } = useAuth();
   const location = useLocation();
@@ -13,7 +12,6 @@ export function RequireAuth({ children }) {
   return children;
 }
 
-/** Wrap a route's element: requires sign-in AND the ADMIN role. Shown, not silently redirected, so a logged-in non-admin understands why. */
 export function RequireAdmin({ children }) {
   const { isAuthenticated, isAdmin } = useAuth();
   const location = useLocation();

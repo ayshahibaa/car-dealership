@@ -35,8 +35,6 @@ export async function registerUser(repo: UserRepository, input: RegisterInput): 
 
 export async function loginUser(repo: UserRepository, input: LoginInput): Promise<AuthResult> {
   const found = await repo.findByEmail(input.email);
-  // Same error for "no such account" and "wrong password" — never let a caller
-  // learn which part was incorrect.
   if (!found || !(await verifyPassword(input.password, found.passwordHash))) {
     throw new ApiError(401, 'Invalid email or password');
   }

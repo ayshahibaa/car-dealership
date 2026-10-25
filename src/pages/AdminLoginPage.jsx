@@ -6,13 +6,6 @@ import Button from '../components/common/Button.jsx';
 import { ErrorMessage } from '../components/common/StatusMessage.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 
-/**
- * A separate door for admins — same backend login (/api/auth/login) as the
- * regular LoginPage, there's no separate admin auth endpoint, but this page
- * then checks the returned role and refuses to leave a non-admin account
- * signed in through it. Keeps "admin" and "buyer/seller" sign-in visually
- * and URL-wise distinct even though they share one user table.
- */
 export default function AdminLoginPage() {
   const { login, logout } = useAuth();
   const navigate = useNavigate();

@@ -1,15 +1,5 @@
 import { createContext, useCallback, useContext, useMemo, useState } from 'react';
 
-/**
- * Holds the set of car ids selected for comparison.
- *
- * This lives above the router (see App.jsx) rather than inside a single page,
- * because — unlike favouriting, which CarCard keeps as a controlled prop
- * owned by whichever page renders it — a comparison needs to survive moving
- * from the homepage to the inventory grid and on to /compare. It is
- * session-only (in memory, not localStorage), matching how Favourites works
- * today; Phase 8 can revisit persisting both the same way.
- */
 const CompareContext = createContext(null);
 
 export const MAX_COMPARE = 3;

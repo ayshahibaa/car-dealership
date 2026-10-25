@@ -11,15 +11,6 @@ import {
 import type { PurchaseRequestRepository } from '../purchaseRequests/purchaseRequestRepository.js';
 import type { VehicleRepository } from '../vehicles/vehicleRepository.js';
 
-/**
- * Mounted at /api/purchase-requests. Takes both repositories as parameters
- * (same DI-for-testing pattern as vehicle.router.ts) since approving a
- * request has to touch both the request and the vehicle's stock.
- *
- * Permissions: every route needs a logged-in user; /pending and the
- * approve/reject decisions are admin-only. There's no public listing here —
- * a request is only ever visible to the buyer who made it or an admin.
- */
 export function createPurchaseRequestRouter(repo: PurchaseRequestRepository, vehicleRepo: VehicleRepository): Router {
   const router = Router();
 

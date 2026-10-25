@@ -1,6 +1,5 @@
 import { useId } from 'react';
 
-/** <Textarea label="Description" value={v} onChange={...} /> — same look and wiring as Input. */
 export default function Textarea({ label, error, hint, id, className = '', rows = 4, ...rest }) {
   const autoId = useId();
   const inputId = id ?? autoId;

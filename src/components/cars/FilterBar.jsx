@@ -5,9 +5,6 @@ import { formatCurrency } from '../../utils/formatCurrency.js';
 import { formatMileage } from '../../utils/formatMileage.js';
 import { appConfig } from '../../config/appConfig.js';
 
-// Round bands for the price/mileage selects. These are UI buckets, not a
-// dataset fact, so a band with no matching car just yields a normal
-// "no cars found" result below, same as any other filter combination.
 const PRICE_BANDS = [10000, 20000, 35000, 50000, 75000, 100000];
 const MILEAGE_BANDS = [10000, 25000, 50000, 75000, 100000, 150000];
 
@@ -22,21 +19,10 @@ function yearOptions(range) {
   return years.map((y) => ({ value: y, label: String(y) }));
 }
 
-/**
- * The inventory search/filter toolbar, built from the reference design's
- * City/Make & Model/Price/Year/Kilometers/Filters layout (region-neutral:
- * no City field, since the dataset has no location data).
- *
- * `query` mirrors the current URL search params (all strings); `onChange(key, value)`
- * updates one param, clearing it when value is '' or undefined. The caller
- * owns the URL and resetting to page 1 on change.
- */
 export default function FilterBar({ options, query, onChange }) {
   const [qText, setQText] = useState(query.q ?? '');
   const debounceRef = useRef(null);
 
-  // Keep the text box in sync when the filter is cleared/changed elsewhere
-  // (e.g. the "Clear filters" link, or arriving via a homepage search link).
   useEffect(() => {
     setQText(query.q ?? '');
   }, [query.q]);

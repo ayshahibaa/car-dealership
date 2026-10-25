@@ -4,7 +4,6 @@ import Footer from './Footer.jsx';
 import CompareBar from '../compare/CompareBar.jsx';
 import { useCompare } from '../../context/CompareContext.jsx';
 
-/** Wraps every page: header on top, footer at the bottom, page content in between. */
 export default function AppLayout() {
   const { count } = useCompare();
 
@@ -17,7 +16,6 @@ export default function AppLayout() {
         Skip to content
       </a>
       <Navbar />
-      {/* Extra bottom space so the floating compare bar never covers page content/footer links. */}
       <main id="main" className={`flex-1 ${count > 0 ? 'pb-20' : ''}`}>
         <Outlet />
       </main>

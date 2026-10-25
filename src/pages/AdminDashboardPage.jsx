@@ -11,15 +11,6 @@ import { deleteVehicle, getAllVehiclesForAdmin, restockVehicle } from '../servic
 import { formatCurrency } from '../utils/formatCurrency.js';
 import { useAuth } from '../context/AuthContext.jsx';
 
-/**
- * Admin-only control centre: approve or reject new listings, approve or
- * reject buyers' purchase requests, and manage inventory directly (restock
- * a sold car, delete a listing outright). Everything here calls the real
- * backend (admin-gated there too — this page is just the UI, not the
- * security boundary). The inventory table reads GET /api/vehicles/admin/all,
- * the one listing endpoint that includes sold (quantity 0) and
- * not-yet-approved vehicles, so there's actually something to restock.
- */
 export default function AdminDashboardPage() {
   const { token } = useAuth();
   const [version, setVersion] = useState(0);

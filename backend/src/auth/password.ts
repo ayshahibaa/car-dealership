@@ -1,6 +1,5 @@
 import bcrypt from 'bcryptjs';
 
-/** Work factor: high enough to be slow for an attacker, fast enough for a demo app's login. */
 const SALT_ROUNDS = 10;
 
 export async function hashPassword(plain: string): Promise<string> {

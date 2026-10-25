@@ -4,13 +4,6 @@ import { CarCardSkeletonGrid } from './CarCardSkeleton.jsx';
 import { ErrorMessage, EmptyState } from '../common/StatusMessage.jsx';
 import { IconChevronRight } from '../icons/index.jsx';
 
-/**
- * A titled row of CarCards for the homepage (featured / recent). Handles its
- * own loading / error / empty states so HomePage just passes a fetch result.
- * Favouriting and the cart are both handled inside CarCard itself (via
- * FavoritesContext / CartContext), so this row doesn't need to know about
- * either.
- */
 export default function CarRow({ title, subtitle, viewAllHref, cars, loading, error, skeletonCount = 4 }) {
   return (
     <div>

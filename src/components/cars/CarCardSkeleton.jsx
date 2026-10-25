@@ -1,4 +1,3 @@
-/** Same footprint as CarCard, shown while a page of cars is loading. */
 export default function CarCardSkeleton() {
   return (
     <div className="flex flex-col overflow-hidden rounded-card bg-ink-850 shadow-card ring-1 ring-white/5" aria-hidden="true">

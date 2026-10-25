@@ -6,7 +6,6 @@ import { useAsync } from '../hooks/useAsync.js';
 import { useFavorites } from '../context/FavoritesContext.jsx';
 import { getCarsByIds } from '../services/carService.js';
 
-/** Favourited cars, persisted via FavoritesContext (localStorage) — see CarCard's heart icon. */
 export default function FavoritesPage() {
   const { ids } = useFavorites();
   const { data: cars, loading, error } = useAsync(
